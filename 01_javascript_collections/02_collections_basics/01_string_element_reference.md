@@ -8,7 +8,7 @@ The index starts the count at `0` and increments by one for the remaining index 
 
 ## Referencing More Than One Char With `.slice`
 
-The `.slice()` method invoked on a string object can allow for returning more than a single character from the object.
+The `string.slice()` method invoked on a string object can allow for returning more than a single character from the object.
 
   - it accepts two arguments
     - the index position to start the extraction
@@ -20,7 +20,7 @@ The `.slice()` method invoked on a string object can allow for returning more th
 
 <br>
 
-## `.substring()`
+## `string.substring()`
 
 - accepts a starting index
 - accepts an ending index (up to not including)
