@@ -14,5 +14,10 @@ Trying to access an objects key / property that does not exist will return `unde
 
 - use `array.includes on an Object.keys() to see if it contains a specific key / property name, boolean true or false will be returned.
 
+<br>
+
+## Specifically checking an array object
+
+To check whether an object is specifically an array object use `Array.isArray(nameOfArray);` which will return true if certified or false otherwise.
 
 
