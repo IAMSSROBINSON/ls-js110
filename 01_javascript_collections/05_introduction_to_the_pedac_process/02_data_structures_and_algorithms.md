@@ -6,6 +6,8 @@ Provide sufficient detail in the algorithm so that the coding with intent become
 
 <br>
 
+Try to work through the "understand the problem" part of this problem on your own, and write the input, output, and rules for it.
+
 // PROBLEM: 
 // Given a string, write a function `palindromeSubstrings` which returns 
 // all the substrings from a given string which are palindromes. Consider // palindrome words case sensitive. 
@@ -18,8 +20,6 @@ Provide sufficient detail in the algorithm so that the coding with intent become
 // console.log(palindromeSubstrings("palindrome")) // should log: [] // 
 // console.log(palindromeSubstrings("")) // should log: []
 
-
-Try to work through the "understand the problem" part of this problem on your own, and write the input, output, and rules for it.
 
 P: Understand The Problem
 
