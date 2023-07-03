@@ -1,4 +1,6 @@
-### Sum Even Number Rows
+### PROBLEM STATEMENT
+
+#### Sum Even Number Rows
 
 Imagine a sequence of consecutive integers beginning with 2.
 The integers are grouped in rows.
@@ -7,9 +9,9 @@ Given an integer representing the number of a particular row, return an integer 
 
 <br>
 
-#### P: Understand The Problem
+##### P: Understand The Problem
 
-##### Clarify & Restate
+###### Clarify & Restate
 
 Consecutive integers are whole numbers that follow each other without gaps. This sequence starts at the number 2.
 
@@ -36,9 +38,9 @@ QUESTIONS:
   - no, the integers are not provided you must generate them as above
 
 
-RULES & REQUIREMENTS
+#### RULES & REQUIREMENTS
 
-  EXPLICIT:
+  ##### EXPLICIT:
 
     INPUT: integer (row number)
     OUTPUT: sum of all consecutive integers on that row
@@ -54,7 +56,7 @@ RULES & REQUIREMENTS
         - generate the row sequence
       - return the sum of all integers on that row
 
-  IMPLICIT:
+  ##### IMPLICIT:
   - The first row starts with the first number: 2
   - row number === number of elements in that row 
 
