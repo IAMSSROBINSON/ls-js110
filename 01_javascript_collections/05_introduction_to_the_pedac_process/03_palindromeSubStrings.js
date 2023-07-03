@@ -188,8 +188,9 @@ if subStrings[currentString] === subStrings[currentString].split('').reverse().j
   - palindromes.push(subStrings[currentString])
 ... return palindromes
 
-
 CODE WITH INTENT:
+*/
+
 
 
 function getSubStrings (string) {
@@ -215,12 +216,6 @@ function getPalindromes (subStringsArr) {
 
   let palindromes = [];
 
-  // guard clause
-  if (subStringsArr.length === 0){
-    return palindromes;
-  }
-
- 
   for (let currentString = 0; currentString < subStringsArr.length; currentString++) {
     if (subStringsArr[currentString] === subStringsArr[currentString].split('').reverse().join('')) {
       palindromes.push(subStringsArr[currentString]);
@@ -230,16 +225,27 @@ function getPalindromes (subStringsArr) {
   return palindromes;
 }
 
-// let string = 'abba'; // [ 'abba', 'bb' ]
+
+function palindromeSubstrings (string){
+  let confirmedPalindromes = [];
+  let subStrings = getSubStrings(string);
+
+  if (subStrings.length === 0){
+    return confirmedPalindromes;
+  } else {
+    confirmedPalindromes = [...getPalindromes(subStrings)];
+  }
+  return confirmedPalindromes;
+}
 
 
-console.log(getPalindromes(getSubStrings('abba'))); // [ 'abba', 'bb' ] √
-console.log(getPalindromes(getSubStrings('supercalifragilisticexpialidocious'))); // [ 'ili' ] √
-console.log(getPalindromes(getSubStrings('abcddcbA'))); // [ 'bcddcb', 'cddc', 'dd' ] √
-console.log(getPalindromes(getSubStrings('palindrome'))); // [] √
-console.log(getPalindromes(getSubStrings(''))); // [] √
 
-TEST CASES CONFIRMED
+// Testing examples: 
+console.log(palindromeSubstrings('abba')); // [ 'abba', 'bb' ] √
+// console.log(palindromeSubstrings('abba')); // [ 'abba', 'bb' ] √
+console.log(palindromeSubstrings('supercalifragilisticexpialidocious')); // [ 'ili' ] √
+console.log(palindromeSubstrings('abcddcbA')); // [ 'bcddcb', 'cddc', 'dd' ] √
+console.log(palindromeSubstrings('palindrome')); // [] √
+console.log(palindromeSubstrings('')); // [] √
 
-
-*/
+// TEST CASES CONFIRMED
