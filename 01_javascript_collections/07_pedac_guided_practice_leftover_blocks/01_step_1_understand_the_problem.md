@@ -57,23 +57,38 @@ IMPLICIT:
 QUESTIONS:
 - what is a structure?
 - what is a block/cube?
+  - a number squared? n**2
 - how is a block/cube represented?
-- what is a layer?
-  - are layers all the same height?
-  - are blocks all the same size?
+  - as the current layer number**2
+- what is a layer?  
+  - the current step in the process of laying blocks
+- are layers all the same height?
+  - n/a
+- are blocks all the same size?
+  - a block is a block, there can be more than 1 block
 - for every 1 block that exists on an upper layer there must be 4 blocks that represent each block in the layer beneath? Is that a 1:4 ratio?
+  - no each 1 block that exists on an upper layer does not command 4 blocks in a lower layer
 - what does a gap between blocks mean?
+  - you cannot skip any steps in the process the block count must get larger from top down to support upper blocks
 - how can a block in a lower layer support more than 1 block in an upper layer?
+  - the blocks on the base must be higher than the blocks that appear above it
 - Can I have an example 
+  - figure it out
 - What is a valid structure?
+  - you must meet the conditions
 - What is an invalid structure?
+  - when the conditions are not met
 - Will there always be enough blocks for a valid structure?
+  - see test cases
 - If not what should be done with the number of blocks?
+  - see test cases
 
 EXAMPLE:
 
 layer 1 => 1 block
 layer 2 => 4 blocks (4 blocks supporting 1 block in upper layer)
-layer 3 => 16 blocks
-layer 4 => 64 blocks
+layer 3 => 9 blocks
+layer 4 => 16 blocks
+
+Row number multiplied by itself equals the required amount of blocks
 
