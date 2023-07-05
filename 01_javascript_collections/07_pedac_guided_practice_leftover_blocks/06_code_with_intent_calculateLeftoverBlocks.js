@@ -1,3 +1,5 @@
+// #{target-code}
+
 function calculateLeftoverBlocks(startingBlocksAmount) {
   if (startingBlocksAmount === 0) {
     return startingBlocksAmount;
