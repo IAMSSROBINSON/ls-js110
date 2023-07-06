@@ -38,14 +38,6 @@ For this step, use your analysis of the problem so far to write out a high-level
    4. Once they are sorted get the extract the keys in place to a separate array and return.
    5. This should be the completion of the task.
 
-
-
-
-
-
-
-
-
 <br>
 
 ### Informal:
