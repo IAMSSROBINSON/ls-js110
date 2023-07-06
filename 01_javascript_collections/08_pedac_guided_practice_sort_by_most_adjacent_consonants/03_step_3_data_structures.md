@@ -15,6 +15,6 @@ To keep track of the adjacent consonant count an object data structure could be 
   aa: 0,
   baa: 0,
   ccaa: 2,
-  dddaa; 3
+  dddaa: 3
 }
 ```
