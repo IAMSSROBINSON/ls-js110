@@ -1,3 +1,4 @@
+// #{target-code}
 
 function consonantCounts (string) {
   let counts = [];
@@ -41,10 +42,12 @@ function isValidConsonant (char) {
   return validConsonants.includes(char);
 }
 
-// ['aa', 'baa', 'ccaa', 'dddaa', 'salt pan']
+// TEST EXAMPLES: INDIVIDUAL STRINGS:
+console.log(consonantCounts('aa')) // { aa: 0 }
+console.log(consonantCounts('baa')) // { baa: 0 }
+console.log(consonantCounts('baabb')) // { baabb: 2 }
+console.log(consonantCounts('dddaa')) // { dddaa: 3 }
+console.log(consonantCounts('salt pan')) // { saltpan: 3 }
 
-// console.log(consonantCounts('aa'))
-// console.log(consonantCounts('baa'))
-// console.log(consonantCounts('baabb'))
-// console.log(consonantCounts('dddaa'))
-console.log(consonantCounts('salt pan'))
+// NEXT: TEST ARRAY OF STRINGS:
+// ['aa', 'baa', 'ccaa', 'dddaa', 'salt pan']
