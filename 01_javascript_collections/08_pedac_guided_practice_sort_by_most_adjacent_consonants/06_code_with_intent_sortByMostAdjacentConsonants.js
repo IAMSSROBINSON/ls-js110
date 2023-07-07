@@ -45,12 +45,44 @@ function isValidConsonant(char) {
   return validConsonants.includes(char);
 }
 
-// TEST EXAMPLES: INDIVIDUAL STRINGS:
-console.log(consonantCounts("aa")); // { aa: 0 }
-console.log(consonantCounts("baa")); // { baa: 0 }
-console.log(consonantCounts("baabb")); // { baabb: 2 }
-console.log(consonantCounts("dddaa")); // { dddaa: 3 }
-console.log(consonantCounts("salt pan")); // { saltpan: 3 }
+function sortStringsByConsonants (arrayOfStrings) {
+  let combinedObj = {};
+  let sortedArrayOfStrings = [];
+  
+  for (let index = 0; index < arrayOfStrings.length; index++) {
+    Object.assign(combinedObj, consonantCounts(arrayOfStrings[index]));
+  }
+
+  sortedArrayOfStrings.push(sortedCombinedObjects(combinedObj));
+
+  return sortedArrayOfStrings[0];
+}
+
+function sortedCombinedObjects (combinedObjects) {
+  let finalArray = [];
+  let arrayOfMembers = Object.entries(combinedObjects);
+
+  let sortedEntries = arrayOfMembers.sort((a, b)=>{
+   
+    return b[1] - a[1];
+  });
+
+  sortedEntries.forEach((array)=>{
+    finalArray.push(array[0]);
+  });
+  return finalArray;
+}
 
 // NEXT: TEST ARRAY OF STRINGS:
-// ['aa', 'baa', 'ccaa', 'dddaa', 'salt pan']
+console.log(sortStringsByConsonants(['aa', 'baa', 'ccaa', 'dddaa'])); 
+// ['dddaa', 'ccaa', 'aa', 'baa'] √
+
+console.log(sortStringsByConsonants(['can can', 'toucan', 'batman', 'salt pan'])); 
+// ['salt pan', 'can can', 'batman', 'toucan'] √
+
+console.log(sortStringsByConsonants(['bar', 'car', 'far', 'jar'])); 
+// ['bar', 'car', 'far', 'jar'] √
+
+console.log(sortStringsByConsonants(['day', 'week', 'month', 'year'])); 
+// ['month', 'day', 'week', 'year'] √
+

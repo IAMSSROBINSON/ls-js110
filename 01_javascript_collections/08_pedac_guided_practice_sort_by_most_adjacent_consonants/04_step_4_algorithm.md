@@ -29,7 +29,8 @@ For this step, use your analysis of the problem so far to write out a high-level
    
    
 3. Compare all the counts and sort them from highest count to lowest.
-   1. If we have an array of strings we can loop over each string and get back an object with the key/string : value/adjacentConsonantCount. We will get back and object for each string in the array and thus we can add each object to a new array.
+   1. If we have an array of strings we can loop over each string and get back an object with the key/string : value/adjacentConsonantCount. 
+   2. We will get back an object for each string in the array and thus we can add each object to a new array. (skip this step and go straight to assigning returned object members to a new object)
 
 4. We should now have an array of objects. 
    1. We can assign each object key:value pair to a new combined object. 
