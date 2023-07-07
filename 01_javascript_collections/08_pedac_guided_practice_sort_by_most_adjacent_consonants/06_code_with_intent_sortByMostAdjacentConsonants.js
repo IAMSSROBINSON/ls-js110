@@ -1,5 +1,21 @@
 // #{target-code}
 
+// Original Problem Statement:
+// Given an array of strings, return a new array where the strings are sorted to the highest number of adjacent consonants a particular string contains. If two strings contain the same highest number of adjacent consonants they should retain their original order in relation to each other. Consonants are considered adjacent if they are next to each other in the same word or if there is a space between two consonants in adjacent words.
+
+function sortStringsByConsonants (arrayOfStrings) {
+  let combinedObj = {};
+  let sortedArrayOfStrings = [];
+  
+  for (let index = 0; index < arrayOfStrings.length; index++) {
+    Object.assign(combinedObj, consonantCounts(arrayOfStrings[index]));
+  }
+
+  sortedArrayOfStrings.push(sortedCombinedObjects(combinedObj));
+
+  return sortedArrayOfStrings[0];
+}
+
 function consonantCounts(string) {
   let counts = [];
   let count = 0;
@@ -45,19 +61,6 @@ function isValidConsonant(char) {
   return validConsonants.includes(char);
 }
 
-function sortStringsByConsonants (arrayOfStrings) {
-  let combinedObj = {};
-  let sortedArrayOfStrings = [];
-  
-  for (let index = 0; index < arrayOfStrings.length; index++) {
-    Object.assign(combinedObj, consonantCounts(arrayOfStrings[index]));
-  }
-
-  sortedArrayOfStrings.push(sortedCombinedObjects(combinedObj));
-
-  return sortedArrayOfStrings[0];
-}
-
 function sortedCombinedObjects (combinedObjects) {
   let finalArray = [];
   let arrayOfMembers = Object.entries(combinedObjects);
@@ -73,7 +76,8 @@ function sortedCombinedObjects (combinedObjects) {
   return finalArray;
 }
 
-// NEXT: TEST ARRAY OF STRINGS:
+
+// TEST CASES:
 console.log(sortStringsByConsonants(['aa', 'baa', 'ccaa', 'dddaa'])); 
 // ['dddaa', 'ccaa', 'aa', 'baa'] √
 
