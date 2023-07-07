@@ -26,6 +26,34 @@ console.log(myNumbers); // [ 1, 4, 3, 7, 2, 6 ]
 
 <br>
 
+```JavaScript
+let produce = {
+  apple: 'Fruit',
+  carrot: 'Vegetable',
+  pear: 'Fruit',
+  broccoli: 'Vegetable'
+};
+
+function fruitOrVeg(array, selection) {
+  let keys = Object.keys(array);
+  let produceSelection = {};
+
+  for (let index = 0; index < keys.length; index++) {
+    let currentKey = keys[index];
+    if (array[currentKey] === selection) {
+      produceSelection[currentKey] = array[currentKey];
+    }
+  }
+
+  return produceSelection;
+}
+
+console.log(fruitOrVeg(produce, 'Fruit')); // { apple: 'Fruit', pear: 'Fruit' }
+console.log(fruitOrVeg(produce, 'Vegetable')); // { carrot: 'Vegetable', broccoli: 'Vegetable' }
+```
+
+<br>
+
 ## Attention
 
 - Pay attention to when the original collection is mutated vs when to return a new collection
