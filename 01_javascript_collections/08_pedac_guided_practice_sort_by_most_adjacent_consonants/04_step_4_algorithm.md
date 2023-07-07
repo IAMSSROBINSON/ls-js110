@@ -4,6 +4,8 @@ For this step, use your analysis of the problem so far to write out a high-level
 
 ## A: Algorithm
 
+### Informal:
+
 1. Receive the array of strings.
 
 2. For each string in the array work out how many adjacent consonants there are and store it with the string.
@@ -41,7 +43,6 @@ For this step, use your analysis of the problem so far to write out a high-level
 
 <br>
 
-### Informal:
-
-
 ### Formal:
+
+Since the informal algorithm went into sufficient detail to implement coding with intent with the more intricate details needed to be coded on the fly - the decision to forgo documenting the formal stages of the algorithm / pseudocode was made.
