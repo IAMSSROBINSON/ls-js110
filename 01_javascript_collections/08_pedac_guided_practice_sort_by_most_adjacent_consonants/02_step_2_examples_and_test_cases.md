@@ -23,3 +23,17 @@ console.log(sortStringsByConsonants(['day', 'week', 'month', 'year']));
 - no empty strings will be included
 - yes, a string can contain more than one word as separated by a space
 - only adjacent consonants count, a single consonant is equal to 0 adjacent consonants
+
+['cat', 'dog', 'amazing', 'try']
+
+|sortToHighestOrder |string   |adjacentConsoCount |
+|:------------------|:--------|:------------------|
+|0                  |try      |3 (t, r, y)        |
+|1                  |amazing  |2 (n, g)           |
+|2                  |cat      |0                  |
+|3                  |dog      |0                  |
+
+
+
+
+
