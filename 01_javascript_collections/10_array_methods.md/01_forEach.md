@@ -1,4 +1,4 @@
-# `Array.prototype.forEach`
+# `Array.prototype.forEach()`
 
 A built-in JavaScript method that iterates over an arrays / collections elements.
 
