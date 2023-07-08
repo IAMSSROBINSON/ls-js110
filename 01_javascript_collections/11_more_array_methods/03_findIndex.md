@@ -1,5 +1,7 @@
 # `Array.prototype.findIndex()`
 
+Built in JavaScript array method that returns the index of the first element to evaluate to true from the callback functions expression on the element.
+
 - called on an array
 - takes a callback function as an argument
 - iterates over each element
