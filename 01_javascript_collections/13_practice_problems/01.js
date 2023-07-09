@@ -2,7 +2,7 @@
 
 /*
 
-// What is the return value of the filter method call below? Why?
+What is the return value of the filter method call below? Why?
 
 METHOD: 
 Array.prototype.filter();
