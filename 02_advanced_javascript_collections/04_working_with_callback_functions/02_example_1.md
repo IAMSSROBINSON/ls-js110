@@ -5,7 +5,7 @@
 ```
 
 - the `forEach()` method is invoked on the array
-- the array contains two other arrays an elements
+- the array contains two nested array elements
   - each array contains 2 primitive values as elements
 - the `forEach()` method takes a callback function as an argument
   - this means the callback function is passed to another function (the .map() method) as an argument
