@@ -30,3 +30,33 @@ array[2][2] = 100;
 console.log(array); // [ 1, 2, [ 3, 4, 100 ] ]
 ```
 
+<br>
+
+## Checking if an Object is Frozen
+
+When objects are deep copied - the `Object.freeze()` is not carried to the copy.
+
+```JavaScript
+// ARRAY:
+let array = [1, 2, [3, 4]];
+
+// array object frozen
+Object.freeze(array);
+
+// array is copied turned into a string, string returned
+let serializedArray = JSON.stringify(array);
+console.log(serializedArray); // "[1,2,[3,4]]"
+
+// the string array is redeemed back to an object and stored in a new variable, deep copy complete
+let deepCopiedArray = JSON.parse(serializedArray);
+console.log(deepCopiedArray); // [ 1, 2, [ 3, 4 ] ]
+
+// push to the deep copied array mutates the deep copy but not the original
+deepCopiedArray[2].push(100);
+console.log(deepCopiedArray); // [ 1, 2, [ 3, 4, 100 ] ]
+console.log(array); // [ 1, 2, [ 3, 4 ] ]
+
+// checking if deep copy array object is frozen and original
+console.log(Object.isFrozen(deepCopiedArray)); // false
+console.log(Object.isFrozen(array)); // true
+```
