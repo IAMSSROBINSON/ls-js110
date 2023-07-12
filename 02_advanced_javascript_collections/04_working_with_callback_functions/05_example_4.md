@@ -33,5 +33,5 @@ let myArr = [[18, 7], [3, 12]].forEach(arr => { return arr.map(num => { if (num 
             - `12 > 5` evaluates to true so this executes the `if` clause and outputs the value: `12` to the console.
             - the `console.log` method invocation returns `undefined` implicitly, which will be added to the return value of the method: [undefined, undefined]
   -  the method returns this array to the caller (the `forEach()` method)
-     -  since forEach only returns `undefined` it will thus returns this value to be stored in the `myArr` variable
-     -  on the second iteration the method will return the same value to be stored in the variable `myArr` but instead of being stored in the variable twice which is not possible unless it is in an array, the variable is reassigned to store this new `undefined` value from the previous one
+     -  since forEach only returns `undefined` it will thus return this value to be stored in the `myArr` variable
+    
