@@ -6,7 +6,7 @@ Sometimes it is useful to make a copy of a collection. This is especially true w
 
 ## Shallow Copy Arrays
 
-Shallow copies only copy the top level of the elements to the new array (nested objects will be copied as references to the original values and changes made to either object will update the copy and original - nested objects are shared objects between both the original and the copy, this goes for both nested array and nested objects).
+Shallow copies only copy the top level of the elements to the new array (nested objects will be copied as references to the original values and changes made to either object will update the copy and original - nested objects are shared objects between both the original and the copy, this goes for both nested array and nested objects within arrays).
 
 - `array.slice()`
   - passing no arguments will return a copy of an array
@@ -40,3 +40,28 @@ Copies of objects can be made also:
   - `Object.assign()` copies the properties from the source and adds them to the copy
   - any properties with the same key are overwritten with the new values
   - creates shallow copy, any nested objects or arrays are shared by the original and the copy and changes will reflect in both since they are references to the same object
+
+```JavaScript
+let obj = {
+  a: 1, 
+  b: 2,
+  c: [3, 4]
+}
+
+// original values copied
+let copyObj = {};
+
+Object.assign(copyObj, obj);
+console.log(copyObj); // { a: 1, b: 2, c: [ 3, 4 ] }
+console.log(obj); // { a: 1, b: 2, c: [ 3, 4 ] }
+
+// shared object mutates original and copy
+copyObj['c'].push(5);
+console.log(copyObj); // { a: 1, b: 2, c: [ 3, 4, 5 ] }
+console.log(obj); // { a: 1, b: 2, c: [ 3, 4, 5 ] }
+
+// changes made at the top level are not shared between original and copy
+copyObj['b'] = 100;
+console.log(copyObj); // { a: 1, b: 100, c: [ 3, 4, 5 ] }
+console.log(obj) // { a: 1, b: 2, c: [ 3, 4, 5 ] }
+```
