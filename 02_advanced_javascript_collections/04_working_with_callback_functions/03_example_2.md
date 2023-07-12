@@ -4,7 +4,9 @@
 [[1, 2], [3, 4]].map(arr => console.log(arr[0])); // 1 // 3 // => undefined
 ```
 
-Action: 
+<br>
+
+## The Breakdown
 - `array.map()`
   - performed on an array
   - usually performs transformation but has no side effect in this instance

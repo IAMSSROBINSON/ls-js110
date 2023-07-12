@@ -4,6 +4,10 @@
 [[1, 2], [3, 4]].forEach(arr => console.log(arr[0])); // 1 // 3 // => undefined
 ```
 
+<br>
+
+## The Breakdown
+
 - the `forEach()` method is invoked on the array
 - the array contains two nested array elements
   - each array contains 2 primitive values as elements
