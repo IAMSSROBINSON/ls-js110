@@ -1,15 +1,24 @@
+// function runningTotal (arrayOfNumbers) {
+//   let newArray = [];
+//   let count = 0;
+//   let total = 0;
+
+//   while (count < arrayOfNumbers.length) {
+//     total += arrayOfNumbers[count];
+//     newArray.push(total);
+//     count++;
+//   }
+
+//   return newArray;
+// }
+
+//MAP:
 function runningTotal (arrayOfNumbers) {
-  let newArray = [];
-  let count = 0;
   let total = 0;
-
-  while (count < arrayOfNumbers.length) {
-    total += arrayOfNumbers[count];
-    newArray.push(total);
-    count++;
-  }
-
-  return newArray;
+  let sum = arrayOfNumbers.map((num, index)=> {
+    return total += num;
+  })
+  return sum;
 }
 
 console.log(runningTotal([2, 5, 13]));             // [2, 7, 20]
