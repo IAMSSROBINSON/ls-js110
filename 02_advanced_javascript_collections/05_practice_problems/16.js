@@ -14,6 +14,8 @@ output: object
   - objKey = arr[0]
   - objValue = arr[1]
 
+console.log(Object.fromEntries(arr));
+
 */
 
 let obj = {};
@@ -23,3 +25,4 @@ for (let i in arr) {
   obj[key] = value;
 }
 console.log(obj)
+
