@@ -20,4 +20,4 @@ Breakpoints can be added and removed when inside and running the debugger mode i
 
 Running the `list()` command when in debugger mode will provide a list of the code landscape 5 lines above and 5 lines below the current position of the debuggers current position in the code cycle.
 
-- you can call the `list(lineNumber)` command and pass in a line number argument to see the lines of code above and below the specified line.
+- you can call the `list(numberOfLines)` command and pass in a numberOfLines argument to see the lines of code above and below the current line.
