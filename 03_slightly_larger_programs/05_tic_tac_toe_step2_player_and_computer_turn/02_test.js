@@ -20,6 +20,7 @@ const COMPUTER_MARKER = 'O';
 // empty character space placeholder 
 // replace this with any place that requires it for the layout 
 const INITIAL_SPACE = ' ';
+const WINNING_COMBOS = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9'], ['1', '4', '7'], ['2', '5', '8'], ['3', '6', '9'], ['1', '5', '9'], ['7', '5', '3']];
 
 // the squares on the board will need to be selectable and manipulatable so lets set up a function that will enable this. An object key: value pair structure will best allow for this whereby the label names will correspond to the selectable and manipulatable squares of which there are 9 (1 - 9)
 function createBoard () {
@@ -84,9 +85,71 @@ function getComputerMove (board) {
   board[computerMove] = COMPUTER_MARKER;
 }
 
+
+
+/*
+
+from the current board - find out if there is a winner
+
+getWinner (board) {
+
+}
+
+board looks like this currently:
+
+{
+  '1': ' ',
+  '2': ' ',
+  '3': 'O',
+  '4': ' ',
+  '5': 'X',
+  '6': ' ',
+  '7': ' ',
+  '8': ' ',
+  '9': ' '
+}
+
+Winning combination of square keys that need to be filled with the same marker value:
+
+['1', '2', '3'] / ['O', 'O', 'O']
+['4', '5', '6'] / ['X', 'X', 'X']
+['7', '8', '9'] / ect.. 
+
+['1', '4', '7']
+['2', '5', '8']
+['3', '6', '9']
+
+['1', '5', '9']
+['7', '5', '3']
+
+
+- using the winning combinations arrays
+- iterate over each of the arrays separately
+- if all the element(key)s in any of the arrays have an objectValue === aParticularMarker then there is a winner
+- determine the marker that the match returned true for and display the winner
+- if you filter the object values out that are === ' ' and the length of the returned array is 9 then all the values have been filled. If there is no winner still at that point then it is a tie.
+- display game tied
+
+
+WINNING COMBOS:
+ const WINNING_COMBOS = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9'], ['1', '4', '7'], ['2', '5', '8'], ['3', '6', '9'], ['1', '5', '9'], ['7', '5', '3']];
+
+*/
+
+function isWinner (obj, marker) {
+
+  return WINNING_COMBOS.some((arr)=>{
+    return arr.every((element)=>{
+      return obj[element] === marker;
+    })
+  })
+  }
+
 let board = createBoard();
 displayBoard(board);
 getUserMove(board);
 displayBoard(board);
 getComputerMove(board);
 displayBoard(board);
+isWinner(board, USER_MARKER);
+isWinner(board, COMPUTER_MARKER);
