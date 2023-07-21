@@ -66,7 +66,7 @@ function getUserMove (board) {
   prompt('Select a Square to mark:');
   while (true) {
     userMove = readline.question().trim();
-    if(availableSquares.includes(userMove)) break;
+    if(getAvailableSquares(board).includes(userMove)) break;
 
     prompt(`Enter valid entry! Numbers only: ${getAvailableSquares(board).join(', ')}`);
   }
@@ -77,8 +77,8 @@ function getUserMove (board) {
 // computer move should be random selection
 function getComputerMove (board) {
   let availableSquares = getAvailableSquares(board);
-  let randomNumberFromAvailableSquares = Math.floor(Math.random() * availableSquares.length);
-  let computerMove = availableSquares[randomNumberFromAvailableSquares];
+  let randomNumberFromAvailableSquares = Math.floor(Math.random() * getAvailableSquares(board).length);
+  let computerMove = getAvailableSquares(board)[randomNumberFromAvailableSquares];
 
   // mark the board with the computerMove
   board[computerMove] = COMPUTER_MARKER;
