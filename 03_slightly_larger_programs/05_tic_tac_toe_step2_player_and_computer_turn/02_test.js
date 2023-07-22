@@ -151,5 +151,5 @@ getUserMove(board);
 displayBoard(board);
 getComputerMove(board);
 displayBoard(board);
-isWinner(board, USER_MARKER);
-isWinner(board, COMPUTER_MARKER);
+console.log(isWinner(board, USER_MARKER));
+console.log(isWinner(board, COMPUTER_MARKER));
