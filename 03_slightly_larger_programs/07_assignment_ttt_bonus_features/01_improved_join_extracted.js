@@ -4,7 +4,7 @@ function joinOr (array, delimiter = ', ', stringInsert = 'or') {
   } else if (array.length > 1) {
     return array.slice(0, (array.length - 1)).join(delimiter) + " " + stringInsert + " " + array.slice(array.length - 1);
   } else {
-    return array.join('x ');
+    return array.join(delimiter);
   }
 }
 
