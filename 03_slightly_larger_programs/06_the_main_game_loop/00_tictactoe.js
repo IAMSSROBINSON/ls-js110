@@ -26,6 +26,10 @@ function getAvailableSquares (board) {
 
 function displayBoard (board) {
   console.clear();
+
+  prompt(`You are: ${USER_MARKER}.`)
+  prompt(`The Computer is: ${COMPUTER_MARKER}.`);
+  
   console.log('');
   console.log('     |     |     ');
   console.log(`  ${board['1']}  |  ${board['2']}  |  ${board['3']}  `);
@@ -65,17 +69,17 @@ function getComputerMove (board) {
 
 function isWinner (board) {
 
-  return getWinner(board);
+  return !!getWinner(board);
 }
 
 function getWinner(board) {
   
 for (let comboArrIndex = 0; comboArrIndex < WINNING_COMBOS.length; comboArrIndex++) {
   if (WINNING_COMBOS[comboArrIndex].every(key => board[String(key)] === USER_MARKER)) {
-    return USER_MARKER;
+    return 'User';
   } 
-  if (WINNING_COMBOS[comboArrIndex].every(key => board[String(key)] === COMPUTER_MARKER)) {
-    return COMPUTER_MARKER;
+  else if (WINNING_COMBOS[comboArrIndex].every(key => board[String(key)] === COMPUTER_MARKER)) {
+    return 'Computer';
   } 
 }
   return null;
@@ -86,24 +90,31 @@ function isBoardFull (board) {
   return availableSquares.length === 0;
 }
 
-let board = getBoard();
+
+
+while (true){
+  let board = getBoard();
 
 while (true) {
-
   displayBoard(board);
-
   getUserMove(board);
-  getComputerMove(board);
+  if (isWinner(board) || isBoardFull(board)) break;
 
-  if (isWinner(board) || isBoardFull(board)) {
-      displayBoard(board);
-      if (isWinner(board) === USER_MARKER) {
-        prompt(`${USER_MARKER}: You Won!`);
-      } else if (isWinner(board) === COMPUTER_MARKER) {
-        prompt(`${COMPUTER_MARKER} : Computer Won!`);
-      } else {
-      prompt(`The game is tied.`);
-    }
-    break;
-  }
+  getComputerMove(board);
+  if (isWinner(board) || isBoardFull(board)) break;
 } 
+
+
+displayBoard(board);
+
+if (isWinner(board)) {
+    prompt(`${getWinner(board)} Won!`);
+  } else {
+    prompt(`The Game Is Tied.`);
+  }
+
+prompt(`Would you like to play again? y/n`);
+let playAgain = readline.question().trim().toLowerCase()[0];
+if (playAgain !== 'y') break;
+}
+prompt(`Thank you for playing Tic Tac Toe!`);
