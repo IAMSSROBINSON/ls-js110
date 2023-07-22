@@ -25,7 +25,7 @@ function getAvailableSquares (board) {
 }
 
 function displayBoard (board) {
-
+  console.clear();
   console.log('');
   console.log('     |     |     ');
   console.log(`  ${board['1']}  |  ${board['2']}  |  ${board['3']}  `);
@@ -81,28 +81,29 @@ for (let comboArrIndex = 0; comboArrIndex < WINNING_COMBOS.length; comboArrIndex
   return null;
 }
 
+function isBoardFull (board) {
+  let availableSquares = getAvailableSquares(board);
+  return availableSquares.length === 0;
+}
+
 let board = getBoard();
 
 while (true) {
-  
+
   displayBoard(board);
 
   getUserMove(board);
-  console.clear();
   getComputerMove(board);
 
-  if (isWinner(board)) {
+  if (isWinner(board) || isBoardFull(board)) {
       displayBoard(board);
       if (isWinner(board) === USER_MARKER) {
         prompt(`${USER_MARKER}: You Won!`);
-      } else {
+      } else if (isWinner(board) === COMPUTER_MARKER) {
         prompt(`${COMPUTER_MARKER} : Computer Won!`);
-      }
-      break;
-    } else if (getAvailableSquares(board).length === 0) {
-      displayBoard(board);
+      } else {
       prompt(`The game is tied.`);
-      break;
     }
-}
-
+    break;
+  }
+} 
