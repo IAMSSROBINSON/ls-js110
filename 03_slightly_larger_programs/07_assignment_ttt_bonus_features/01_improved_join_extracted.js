@@ -2,10 +2,10 @@ function joinOr (array, delimiter = ', ', stringInsert = 'or') {
   let string = '';
   if (array.length === 0) {
     return string;
-  } else if (array.length > 1) {
-    string = array.slice(0, (array.length - 1)).join(delimiter) + " " + stringInsert + " " + array.slice(array.length - 1);
+  } else if (array.length == 1) {
+    string = String(array[0]) ;
   } else {
-    string = array.join(delimiter);
+    string = array.slice(0, (array.length - 1)).join(delimiter) + " " + stringInsert + " " + array.slice(array.length - 1);
   }
   return string;
 }
