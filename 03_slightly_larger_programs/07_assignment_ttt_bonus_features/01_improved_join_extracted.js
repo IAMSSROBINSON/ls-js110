@@ -1,11 +1,13 @@
 function joinOr (array, delimiter = ', ', stringInsert = 'or') {
+  let string = '';
   if (array.length === 0) {
-    return '';
+    return string;
   } else if (array.length > 1) {
-    return array.slice(0, (array.length - 1)).join(delimiter) + " " + stringInsert + " " + array.slice(array.length - 1);
+    string = array.slice(0, (array.length - 1)).join(delimiter) + " " + stringInsert + " " + array.slice(array.length - 1);
   } else {
-    return array.join(delimiter);
+    string = array.join(delimiter);
   }
+  return string;
 }
 
 
