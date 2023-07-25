@@ -16,4 +16,8 @@ Write a function that takes one argument, an array of integers, and returns the 
 - divide this number by the length of the array
 - Math.floor() the result and return
 
+
+Further Exploration
+Try to solve this problem using Array.prototype.forEach method. Did you manage to do it? Was it difficult? Now try to to solve it using Array.prototype.reduce method.
+
 */
