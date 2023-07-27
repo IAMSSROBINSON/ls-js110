@@ -128,4 +128,8 @@ function isBalanced(string) {
   return parens === 0;
 };
 
+
+Further Exploration
+There are a few other characters that should be matching as well. Square brackets and curly brackets normally come in pairs. Quotation marks(single and double) also typically come in pairs and should be balanced. Can you expand this function to take into account those characters?
+
 */
