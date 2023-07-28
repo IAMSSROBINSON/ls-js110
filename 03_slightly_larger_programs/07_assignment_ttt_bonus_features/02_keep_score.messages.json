@@ -1,4 +1,6 @@
 {
   "welcome" :  "Welcome To Tic Tac Toe!",
-  "select" : "Select a square:"
+  "select" : "Select a square:",
+  "movePrompt" : "Please select a square:",
+  "invalidSquare" : "Please select a valid square!:"
 }
