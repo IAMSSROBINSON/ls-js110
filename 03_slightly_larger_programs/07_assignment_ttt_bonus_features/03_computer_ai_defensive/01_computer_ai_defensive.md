@@ -6,30 +6,30 @@ The computer currently picks a square at random. That's not very interesting. Le
 
 ## P: Understanding The Problem
 
-Create a function
-When it is the computers turn to place a marker
-First check if the User has occupied (with their marker) 2 out of 3 squares in the winning_combos array of nested winner combo arrays.
-If the user has occupied 2 squares with the potential for a win on the 3rd then return that winning combo array and have the computer select the unoccupied square.
+Create a function  
+When it is the computers turn to place a marker  
+First check if the User has occupied (with their marker) 2 out of 3 squares in the winning_combos array of nested winner combo arrays.  
+If the user has occupied 2 squares with the potential for a win on the 3rd then return that winning combo array and have the computer select the unoccupied square.  
 
-Input: board(object of occupied squares(with markers) and unoccupied squares thus far in the game)
-Output: array combo where 2 squares are occupied(===) with the USER_MARKER 'X'
+Input: board(object of occupied squares(with markers) and unoccupied squares thus far in the game)  
+Output: array combo where 2 squares are occupied(===) with the USER_MARKER 'X'  
 Rules:
-  Explicit:
+  Explicit:  
   - must identify 2 occupied squares from at least 1 array in the WINNING_COMBOS arrays
     - this will leave 1 square === ' '; 
-    - the computer should select this square for its move to save the same
+    - the computer should select this square for its move to save the same  
 
 
-  Implicit:
+  Implicit:  
   - n/a
 
-Questions:
-  - there may be more than 1 array identified with 2 occupied squares, what will you do?
-    - return the first array  
+Questions:  
+  - there may be more than 1 array identified with 2 occupied squares, what will you do?  
+    - return the first array    
 
 <br>
 
-## E: Examples and Test Cases
+## E: Examples and Test Cases  
 ```JavaScript
 const WINNING_COMBOS = [
   [1, 2, 3],
@@ -70,8 +70,8 @@ board object:
 ```
 
 Mental Model:
-From the board object we can see the occupied and unoccupied squares.
-When comparing the board object keys occupied and the USER_MARKER value('X') with the WINNING_COMBOS array we see that one of the nested arrays: [1, 2, 3] has 2/3 elements of the array === USER_MARKER with one element unoccupied:
+- From the board object we can see the occupied and unoccupied squares.  
+- When comparing the board object keys occupied and the USER_MARKER value('X') with the WINNING_COMBOS array we see that one of the nested arrays: [1, 2, 3] has 2/3 elements of the array === USER_MARKER with one element unoccupied:
 
 WINNING_COMBOS: [[1, 2, 3]] 
 
@@ -86,41 +86,43 @@ board['3'] === ' '
 <br>
 
 ## D: Data Structure
-Array: I will potentially utilize an array structure to filter out required values.
+Array: I will potentially utilize an array structure to filter out required values.  
 
-A: Algorithm
+<br>
 
-Informal:
+## A: Algorithm  
+
+Informal:  
 - Before the computer randomly selects an available square
 
-- Create a function that finds out if there is a threat square(a square that will enable the User to win by completing a WINNING_COMBO)
+- Create a function that finds out if there is a threat square(a square that will enable the User to win by completing a WINNING_COMBO)  
   
-- get the first array that is a threat:
+- get the first array that is a threat:  
 - array.find(theFirstNestedArrayAsThereMayBeMoreThanOne) in the WINNING_COMBOS array:
-  that meets one of these tests:
-  - iterate over the winningCombos array(with nested arrays)
-  - test to make sure 2 out of 3 squares are occupied by the userMarker and 1 square is available
-    - For each nested array inside of the winningCombos array:
-    - return the first array that matches these conditions and save to variable threatArray:
+  that meets one of these tests:  
+  - iterate over the winningCombos array(with nested arrays)  
+  - test to make sure 2 out of 3 squares are occupied by the userMarker and 1 square is available  
+    - For each nested array inside of the winningCombos array:  
+    - return the first array that matches these conditions and save to variable threatArray:  
     (board[nestedArray[0]] === USER_MARKER &&
         board[nestedArray[1]] === USER_MARKER) && board[nestedArray[2]] === ' ' ||
       (board[nestedArray[1]] === USER_MARKER &&
         board[nestedArray[2]] === USER_MARKER) && board[nestedArray[0]] === ' ' ||
       (board[nestedArray[0]] === USER_MARKER &&
-        board[nestedArray[2]] === USER_MARKER && board[nestedArray[1]] === ' ')
-  - e.g. let threatArray = [ 1, 4, 7 ]
+        board[nestedArray[2]] === USER_MARKER && board[nestedArray[1]] === ' ')  
+  - e.g. let threatArray = [ 1, 4, 7 ]  
   
-- use the availableSquares function to return a list of the available squares 
-  - e.g. [2, 7, 9]
+- use the availableSquares function to return a list of the available squares   
+  - e.g. [2, 7, 9]   
 
-- iterate over the available squares and set a currentSquare variable
-  - nest a loop and iterate over the threatArray
-    - if currentSquare matches one of the values in the threatArray then set to computers move
+- iterate over the available squares and set a currentSquare variable  
+  - nest a loop and iterate over the threatArray  
+    - if currentSquare matches one of the values in the threatArray then set to computers move  
 
-Formal:
+Formal:  
 Since this will require some manipulation to integrate into the flow of the program as it stands a formal  rendition of the algorithm will not be useful since some juggling will occur.
 
 <br>
 
-## C: Code With Intent
-[link to code](./01_computer_ai_defensive.js)
+## C: Code With Intent  
+[link to code](./01_computer_ai_defensive.js)  
