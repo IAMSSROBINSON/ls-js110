@@ -210,12 +210,13 @@ function displayGrandWinner(winner, userPlayer, computerPlayer) {
 }
 
 // MAIN PROGRAM
+console.log('')
 prompt(MESSAGES.displayWelcome);
 prompt(MESSAGES.displayRules1);
 prompt(MESSAGES.displayRules2);
 prompt(MESSAGES.displayRules3);
-prompt(MESSAGES.displayReadToPlay + "\n");
-setTimeout(startProgram, 8000);
+prompt(MESSAGES.displayReadToPlay);
+setTimeout(startProgram, 9000);
 
 function startProgram() {
 
