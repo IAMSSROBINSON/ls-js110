@@ -71,17 +71,17 @@ board object:
 
 Mental Model:
 - From the board object we can see the occupied and unoccupied squares.  
-- When comparing the board object keys occupied and the USER_MARKER value('X') with the WINNING_COMBOS array we see that one of the nested arrays: [1, 2, 3] has 2/3 elements of the array === USER_MARKER with one element unoccupied:
+- When comparing the board object keys occupied and the USER_MARKER value('X') with the WINNING_COMBOS array we see that one of the nested arrays: [1, 2, 3] has 2/3 elements of the array === USER_MARKER with one element unoccupied:  
 
-WINNING_COMBOS: [[1, 2, 3]] 
+WINNING_COMBOS: [[1, 2, 3]]   
 
-Occupied:
-board['1'] === 'X'
-board['2'] === 'X'
-board['4'] === 'X'
+Occupied:  
+board['1'] === 'X'  
+board['2'] === 'X  
+board['4'] === 'X'  
 
-Unoccupied threat:
-board['3'] === ' '
+Unoccupied threat:  
+board['3'] === ' '  
 
 <br>
 
@@ -118,6 +118,7 @@ Informal:
 - iterate over the available squares and set a currentSquare variable  
   - nest a loop and iterate over the threatArray  
     - if currentSquare matches one of the values in the threatArray then set to computers move  
+    - e.g. 3
 
 Formal:  
 Since this will require some manipulation to integrate into the flow of the program as it stands a formal  rendition of the algorithm will not be useful since some juggling will occur.
