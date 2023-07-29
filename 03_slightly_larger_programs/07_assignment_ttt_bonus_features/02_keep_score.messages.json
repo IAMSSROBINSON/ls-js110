@@ -2,5 +2,9 @@
   "welcome" :  "Welcome To Tic Tac Toe!",
   "select" : "Select a square:",
   "movePrompt" : "Please select a square:",
-  "invalidSquare" : "Please select a valid square!:"
+  "invalidSquare" : "Please select a valid square!:",
+  "userName" : "User",
+  "computerName" : "Computer",
+  "winnerIs" : "The Winner is:",
+  "tiedGame" : "The game is tied!"
 }

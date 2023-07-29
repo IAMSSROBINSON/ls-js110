@@ -78,11 +78,19 @@ function joinerOr (array, delimiter = ', ', word = 'or') {
 }
 
 function isWinner (board) {
-  return WINNING_COMBOS.some(arrayOfCombos => arrayOfCombos.every(element => board[String(element)] === USER_MARKER));
-}
+  return  (WINNING_COMBOS.some(arrayOfCombos => arrayOfCombos.every(element => board[element] === USER_MARKER)) || WINNING_COMBOS.some(arrayOfCombos => arrayOfCombos.every(element => board[element] === COMPUTER_MARKER)));
+} 
 
 function isNoSquaresLeft (board) {
   return getAvailableSquares(board).length === 0;
+}
+
+function getWinner (board) {
+  if (WINNING_COMBOS.some(arrayOfCombos => arrayOfCombos.every(element => board[element] === USER_MARKER))) {
+    return MESSAGES.userName;
+  } else {
+    return MESSAGES.computerName;
+  }
 }
 
 
@@ -96,11 +104,18 @@ displayBoard(board);
 
 while (true) {
 prompt(`${MESSAGES.select} ${joinerOr(getAvailableSquares(board), ', ', ' or ')}`);
+
 getUserMove(board);
+displayBoard(board);
+if (isNoSquaresLeft(board) || isWinner(board)) break;
+
 getComputerMove(board);
 displayBoard(board);
-  if (isNoSquaresLeft(board) || isWinner(board)) break;
+if (isNoSquaresLeft(board) || isWinner(board)) break;
 }
 
-
-
+if (isWinner(board)) {
+  prompt(`${MESSAGES.winnerIs} ${getWinner(board)}`);
+} else {
+  prompt(MESSAGES.tiedGame);
+}
