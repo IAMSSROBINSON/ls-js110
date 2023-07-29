@@ -6,5 +6,7 @@
   "userName" : "User",
   "computerName" : "Computer",
   "winnerIs" : "The Winner is:",
-  "tiedGame" : "The game is tied!"
+  "tiedGame" : "The game is tied!",
+  "playAgain" : "Would you like to play again (y/n):",
+  "goodbye" : "Thank you for playing Tic Tac Toe!"
 }
