@@ -14,6 +14,7 @@ const BOARD_SIZE = 9;
 const SQUARE_PLACEHOLDER = " ";
 const USER_MARKER = "X";
 const COMPUTER_MARKER = "O";
+const GRAND_WINNER = 5;
 const WINNING_COMBOS = [
   [1, 2, 3],
   [4, 5, 6],
@@ -26,6 +27,7 @@ const WINNING_COMBOS = [
 ];
 
 function prompt(message) {
+  console.log('');
   console.log(`=> ${message}`);
 }
 
@@ -66,7 +68,7 @@ function getUserMove(board) {
 
   while (!getAvailableSquares(board).includes(String(userMove))) {
     prompt(
-      `${MESSAGES.invalidSquare} ${joinerOr(
+      `${MESSAGES.promptInvalidSquare} ${joinerOr(
         getAvailableSquares(board),
         "; ",
         " and "
@@ -119,9 +121,9 @@ function getWinner(board) {
       arrayOfCombos.every((element) => board[element] === USER_MARKER)
     )
   ) {
-    winner = MESSAGES.userName;
+    winner = MESSAGES.displayUserName;
   } else {
-    winner = MESSAGES.computerName;
+    winner = MESSAGES.displayComputerName;
   }
 
   return winner;
@@ -138,7 +140,11 @@ function scoreManager () {
     score += 1;
   }
 
-  return {getScore, increaseScore};
+  function resetScore () {
+    score = 0;
+  }
+
+  return {getScore, increaseScore, resetScore};
 }
 
 function incrementWinnerScore (userOrComputer, userPlayer, computerPlayer) {
@@ -151,16 +157,28 @@ function incrementWinnerScore (userOrComputer, userPlayer, computerPlayer) {
 
 function displayScores (userPlayer, computerPlayer) {
   console.log('');
-  prompt(`Scores:`);
-  prompt(`User: ${userPlayer.getScore()}`);
-  prompt(`Computer: ${computerPlayer.getScore()}`);
+  prompt(`${MESSAGES.displayScoresHeader}`);
+  prompt(`${MESSAGES.displayUserName}: ${userPlayer.getScore()}`);
+  prompt(`${MESSAGES.displayComputerName}: ${computerPlayer.getScore()}`);
   console.log('');
+}
+
+function isGrandWinner (userPlayer, computerPlayer) {
+  return userPlayer.getScore() === GRAND_WINNER || computerPlayer.getScore() === GRAND_WINNER;
+}
+
+function displayGrandWinner (winner, userPlayer, computerPlayer) {
+  
+  prompt(`${winner}${MESSAGES.displayGrandWinner}`);
+  
+  userPlayer.resetScore();
+  computerPlayer.resetScore();
 }
 
 // MAIN PROGRAM
 (function startProgram () {
 
-prompt(MESSAGES.welcome + "\n");
+prompt(MESSAGES.displayWelcome + "\n");
 
 let userPlayer = scoreManager();
 let computerPlayer = scoreManager();
@@ -171,7 +189,7 @@ while (true) {
 
   while (true) {
     prompt(
-      `${MESSAGES.select} ${joinerOr(getAvailableSquares(board), ", ", " or ")}`
+      `${MESSAGES.promptSelect} ${joinerOr(getAvailableSquares(board), ", ", " or ")}`
     );
 
     getUserMove(board);
@@ -184,17 +202,20 @@ while (true) {
   }
 
   if (isWinner(board)) {
-    prompt(`${MESSAGES.winnerIs} ${getWinner(board)}`);
+    prompt(`${MESSAGES.displayWinnerIs} ${getWinner(board)}`);
     incrementWinnerScore(getWinner(board), userPlayer, computerPlayer);
   } else {
-    prompt(MESSAGES.tiedGame);
+    prompt(MESSAGES.displayTiedGame);
   }
   displayScores(userPlayer, computerPlayer);
+  if (isGrandWinner(userPlayer, computerPlayer)) {
+    displayGrandWinner(getWinner(board), userPlayer, computerPlayer);
+  }
 
-  prompt(MESSAGES.playAgain);
+  prompt(MESSAGES.promptPlayAgain);
   let playAgain = READLINE.question();
   if (playAgain[0].toLowerCase() !== "y") {
-    prompt(MESSAGES.goodbye);
+    prompt(MESSAGES.displayGoodbye);
     break;
   }
 }

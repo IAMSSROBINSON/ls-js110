@@ -1,12 +1,14 @@
 {
-  "welcome" :  "Welcome To Tic Tac Toe!",
-  "select" : "Select a square:",
-  "movePrompt" : "Please select a square:",
-  "invalidSquare" : "Please select a valid square!:",
-  "userName" : "User",
-  "computerName" : "Computer",
-  "winnerIs" : "The Winner is:",
-  "tiedGame" : "The game is tied!",
-  "playAgain" : "Would you like to play again (y/n):",
-  "goodbye" : "Thank you for playing Tic Tac Toe!"
+  "displayWelcome" :  "Welcome To Tic Tac Toe!",
+  "promptSelect" : "Select a square:",
+  "promptMovePrompt" : "Please select a square:",
+  "promptInvalidSquare" : "Please select a valid square!:",
+  "displayUserName" : "User",
+  "displayComputerName" : "Computer",
+  "displayWinnerIs" : "The Winner is:",
+  "displayTiedGame" : "The game is tied!",
+  "promptPlayAgain" : "Would you like to play again (y/n):",
+  "displayGoodbye" : "Thank you for playing Tic Tac Toe!", 
+  "displayScoresHeader" : "SCORES:",
+  "displayGrandWinner" : " : is The Grand Winner! Congratulations on your Success!"
 }
