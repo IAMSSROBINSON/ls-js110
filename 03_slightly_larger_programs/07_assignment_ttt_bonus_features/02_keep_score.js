@@ -113,19 +113,57 @@ function isNoSquaresLeft(board) {
 }
 
 function getWinner(board) {
+  let winner;
   if (
     WINNING_COMBOS.some((arrayOfCombos) =>
       arrayOfCombos.every((element) => board[element] === USER_MARKER)
     )
   ) {
-    return MESSAGES.userName;
+    winner = MESSAGES.userName;
   } else {
-    return MESSAGES.computerName;
+    winner = MESSAGES.computerName;
+  }
+
+  return winner;
+}
+
+function scoreManager () {
+  let score = 0;
+
+  function getScore () {
+    return score;
+  }
+
+  function increaseScore () {
+    score += 1;
+  }
+
+  return {getScore, increaseScore};
+}
+
+function incrementWinnerScore (userOrComputer, userPlayer, computerPlayer) {
+  if (userOrComputer === 'User') {
+    userPlayer.increaseScore();
+  } else {
+    computerPlayer.increaseScore();
   }
 }
 
+function displayScores (userPlayer, computerPlayer) {
+  console.log('');
+  prompt(`Scores:`);
+  prompt(`User: ${userPlayer.getScore()}`);
+  prompt(`Computer: ${computerPlayer.getScore()}`);
+  console.log('');
+}
+
 // MAIN PROGRAM
+(function startProgram () {
+
 prompt(MESSAGES.welcome + "\n");
+
+let userPlayer = scoreManager();
+let computerPlayer = scoreManager();
 
 while (true) {
   let board = getBoard();
@@ -147,9 +185,11 @@ while (true) {
 
   if (isWinner(board)) {
     prompt(`${MESSAGES.winnerIs} ${getWinner(board)}`);
+    incrementWinnerScore(getWinner(board), userPlayer, computerPlayer);
   } else {
     prompt(MESSAGES.tiedGame);
   }
+  displayScores(userPlayer, computerPlayer);
 
   prompt(MESSAGES.playAgain);
   let playAgain = READLINE.question();
@@ -158,3 +198,5 @@ while (true) {
     break;
   }
 }
+
+})();
