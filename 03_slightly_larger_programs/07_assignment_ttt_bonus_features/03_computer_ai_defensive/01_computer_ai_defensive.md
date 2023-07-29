@@ -113,7 +113,7 @@ Informal:
   - e.g. let threatArray = [ 1, 2, 3 ]  
   
 - use the availableSquares function to return a list of the available squares   
-  - e.g. [2, 7, 9]   
+  - e.g. [3, 5, 8, 9]   
 
 - iterate over the available squares and set a currentSquare variable  
   - nest a loop and iterate over the threatArray  
