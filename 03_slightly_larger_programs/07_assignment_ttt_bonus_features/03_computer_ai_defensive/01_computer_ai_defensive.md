@@ -110,7 +110,7 @@ Informal:
         board[nestedArray[2]] === USER_MARKER) && board[nestedArray[0]] === ' ' ||
       (board[nestedArray[0]] === USER_MARKER &&
         board[nestedArray[2]] === USER_MARKER && board[nestedArray[1]] === ' ')  
-  - e.g. let threatArray = [ 1, 4, 7 ]  
+  - e.g. let threatArray = [ 1, 2, 3 ]  
   
 - use the availableSquares function to return a list of the available squares   
   - e.g. [2, 7, 9]   
