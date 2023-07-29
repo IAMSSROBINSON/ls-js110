@@ -27,7 +27,6 @@ const WINNING_COMBOS = [
 ];
 
 function prompt(message) {
-  console.log('');
   console.log(`=> ${message}`);
 }
 
@@ -168,7 +167,7 @@ function isGrandWinner (userPlayer, computerPlayer) {
 }
 
 function displayGrandWinner (winner, userPlayer, computerPlayer) {
-  
+
   prompt(`${winner}${MESSAGES.displayGrandWinner}`);
   
   userPlayer.resetScore();
