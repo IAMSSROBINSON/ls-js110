@@ -1,0 +1,22 @@
+{
+  "displayWelcome" :  "Welcome To Tic Tac Toe!\n",
+  "displayRules1" : "Enter a number & hit RETURN to place your marker on an available square.",
+  "displayRules2" : "First player to occupy 3 squares in row (diagonal or horizontal) wins.",
+  "displayRules3" : "First to win 5 games is the Grand Winner!\n",
+  "displayReadToPlay" : "Ready to take a beating? Let's Go!\n",
+  "displayUserMarker" : "User marker:",
+  "displayComputerMarker" : "Computer marker:",
+  "promptSelect" : "Select a square:",
+  "promptMovePrompt" : "Please select a square:",
+  "promptInvalidSquare" : "Please select a valid square!:",
+  "displayUserName" : "User",
+  "displayComputerName" : "Computer",
+  "displayWinnerIs" : "The Winner is:",
+  "displayTiedGame" : "The game is tied!",
+  "promptPlayAgain" : "Would you like to play again (y/n):",
+  "displayGoodbye" : "Thank you for playing Tic Tac Toe!", 
+  "displayScoresHeader" : "SCORES:",
+  "displayGrandWinner" : " : is The Grand Winner! Congratulations on your Success!",
+  "promptWhoPlaysFirst" : "Select who should play first:\n\n1) User\n2) Computer",
+  "promptInvalidFirstPlayer" : "Please make a valid number selection:\n\n1) User\n2) Computer"
+}
