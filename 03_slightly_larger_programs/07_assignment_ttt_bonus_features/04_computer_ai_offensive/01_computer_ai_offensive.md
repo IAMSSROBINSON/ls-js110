@@ -32,22 +32,27 @@ Rules:
 
 ## E: Examples and Test Cases
 
-
+- The user has made a move and it is now the computers turn
+- The computer checks the current board to see if it has occupied 2 squares with its marker from the WINNING_COMBOS list and if a third square in the list is available(=== ' ')
+  - If yes then computerMove should become this empty square so computer can win the game
+  - If no then return false and let computer check for a threatSquare to save the same from a loss
+  - If no threat square then choose a square at random
 
 <br>
 
 ## D: Data Structure
 
-
-
+Array: We will utilize the array and function structures already built but we will tweak the functions especially to become generic and return the desired result based on the arguments passed in. This will allow the functions to be used for more than one purpose with differing results.
 
 <br>
 
 ## A: Algorithm
 
+- Make the `getThreatSquare` function generic so that the results are dependant on the players marker that is passed in.
 
+- This will allow the function to identify both if a threat exists from the USER_MARKER when passing the USER_MARKER and will also allow for identifying if the COMPUTER_MARKER poses and threat to the user - thereby allowing the computer to identify a square it can take to win the game.
 
-
+- add to the if statement in getComputerMove so that it initially checks for a winning move and pass in the COMPUTER_MARKER in the same way that the USER_MARKER is passed to find a threatSquare
 <br>
 
 ## C: Code With Intent

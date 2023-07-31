@@ -1,5 +1,5 @@
 const READLINE = require("readline-sync");
-const MESSAGES = require("./01_computer_ai_defensive.json");
+const MESSAGES = require("./01_computer_ai_offensive.json");
 const BOARD_SIZE = 9;
 const SQUARE_PLACEHOLDER = " ";
 const USER_MARKER = "X";
@@ -73,9 +73,12 @@ function getUserMove(board) {
 
 function getComputerMove(board) {
   let computerMove;
-
-  if (isThreat(board)) {
-    computerMove = getThreat(board);
+  
+  if (isThreat(board, COMPUTER_MARKER)) {
+    computerMove = getThreatSquare(board, COMPUTER_MARKER);
+  }
+  else if (isThreat(board, USER_MARKER)) {
+    computerMove = getThreatSquare(board, USER_MARKER);
   } else {
     let randomNumber = Math.floor(
       Math.random() * getAvailableSquares(board).length
@@ -85,11 +88,11 @@ function getComputerMove(board) {
   board[computerMove] = COMPUTER_MARKER;
 }
 
-function getThreat(board) {
+function getThreatSquare(board, PLAYER_MARKER) {
   let computerMove;
   let availableSquares = getAvailableSquares(board);
 
-  let threatArray = isThreat(board);
+  let threatArray = isThreat(board, PLAYER_MARKER);
 
   for (let index = 0; index < availableSquares.length; index++) {
     let currentAvailableSquare = availableSquares[index];
@@ -104,17 +107,17 @@ function getThreat(board) {
   return computerMove;
 }
 
-function isThreat(board) {
+function isThreat(board, PLAYER_MARKER) {
   return WINNING_COMBOS.find((nestedArray) => {
     return (
-      (board[nestedArray[0]] === USER_MARKER &&
-        board[nestedArray[1]] === USER_MARKER &&
+      (board[nestedArray[0]] === PLAYER_MARKER &&
+        board[nestedArray[1]] === PLAYER_MARKER &&
         board[nestedArray[2]] === " ") ||
-      (board[nestedArray[1]] === USER_MARKER &&
-        board[nestedArray[2]] === USER_MARKER &&
+      (board[nestedArray[1]] === PLAYER_MARKER &&
+        board[nestedArray[2]] === PLAYER_MARKER &&
         board[nestedArray[0]] === " ") ||
-      (board[nestedArray[0]] === USER_MARKER &&
-        board[nestedArray[2]] === USER_MARKER &&
+      (board[nestedArray[0]] === PLAYER_MARKER &&
+        board[nestedArray[2]] === PLAYER_MARKER &&
         board[nestedArray[1]] === " ")
     );
   });
