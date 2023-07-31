@@ -56,3 +56,4 @@ Array: We will utilize the array and function structures already built but we wi
 <br>
 
 ## C: Code With Intent
+[Link to code](./01_computer_ai_offensive.js)
