@@ -21,10 +21,12 @@ const PLAYS_FIRST = PLAYERS[1];
 const VALID_PLAY_AGAIN_INPUTS = ["y", "n", "yes", "no"];
 
 function prompt(message) {
+
   console.log(`=> ${message}`);
 }
 
 function getBoard() {
+
   let board = {};
 
   for (let square = 1; square <= BOARD_SIZE; square++) {
@@ -35,6 +37,7 @@ function getBoard() {
 }
 
 function displayBoard(board) {
+
   console.clear();
   prompt(`${MESSAGES.displayUserMarker} ${USER_MARKER}`);
   prompt(`${MESSAGES.displayComputerMarker} ${COMPUTER_MARKER}`);
@@ -55,10 +58,12 @@ function displayBoard(board) {
 }
 
 function getAvailableSquares(board) {
+
   return Object.keys(board).filter((squares) => board[squares] === " ");
 }
 
 function getUserMove(board) {
+
   prompt(
     `${MESSAGES.promptSelect} ${joinerOr(
       getAvailableSquares(board),
@@ -66,8 +71,6 @@ function getUserMove(board) {
       " or "
     )}`
   );
-
-
 
   let userMove = READLINE.question().trim();
 
@@ -86,6 +89,7 @@ function getUserMove(board) {
 }
 
 function getComputerMove(board) {
+
   let computerMove;
 
   if (isThreat(board, COMPUTER_MARKER)) {
@@ -104,6 +108,7 @@ function getComputerMove(board) {
 }
 
 function getThreatSquare(board, PLAYER_MARKER) {
+
   let computerMove;
   let availableSquares = getAvailableSquares(board);
 
@@ -123,6 +128,7 @@ function getThreatSquare(board, PLAYER_MARKER) {
 }
 
 function isThreat(board, PLAYER_MARKER) {
+
   return WINNING_COMBOS.find((nestedArray) => {
     return (
       (board[nestedArray[0]] === PLAYER_MARKER &&
@@ -139,6 +145,7 @@ function isThreat(board, PLAYER_MARKER) {
 }
 
 function joinerOr(array, delimiter = ", ", word = "or") {
+
   if (array.length <= 1) {
     return array;
   }
@@ -150,6 +157,7 @@ function joinerOr(array, delimiter = ", ", word = "or") {
 }
 
 function isWinner(board) {
+
   return (
     WINNING_COMBOS.some((arrayOfCombos) =>
       arrayOfCombos.every((element) => board[element] === USER_MARKER)
@@ -161,10 +169,12 @@ function isWinner(board) {
 }
 
 function isNoSquaresLeft(board) {
+
   return getAvailableSquares(board).length === 0;
 }
 
 function getWinner(board) {
+
   let winner;
   if (
     WINNING_COMBOS.some((arrayOfCombos) =>
@@ -180,6 +190,7 @@ function getWinner(board) {
 }
 
 function scoreManager() {
+
   let score = 0;
 
   function getScore() {
@@ -198,6 +209,7 @@ function scoreManager() {
 }
 
 function incrementWinnerScore(userOrComputer, userPlayer, computerPlayer) {
+
   if (userOrComputer === "User") {
     userPlayer.increaseScore();
   } else {
@@ -206,12 +218,16 @@ function incrementWinnerScore(userOrComputer, userPlayer, computerPlayer) {
   }
 }
 
-function tauntUser () {
-  let randomInstigation = Math.floor(Math.random() * MESSAGES.displayInstigator.length);
+function tauntUser() {
+
+  let randomInstigation = Math.floor(
+    Math.random() * MESSAGES.displayInstigator.length
+  );
   prompt(MESSAGES.displayInstigator[randomInstigation]);
 }
 
 function displayScores(userPlayer, computerPlayer) {
+
   console.log("");
   prompt(`${MESSAGES.displayScoresHeader}`);
   prompt(`${MESSAGES.displayUserName}: ${userPlayer.getScore()}`);
@@ -220,6 +236,7 @@ function displayScores(userPlayer, computerPlayer) {
 }
 
 function isGrandWinner(userPlayer, computerPlayer) {
+
   return (
     userPlayer.getScore() === GRAND_WINNER ||
     computerPlayer.getScore() === GRAND_WINNER
@@ -227,6 +244,7 @@ function isGrandWinner(userPlayer, computerPlayer) {
 }
 
 function displayGrandWinner(winner, userPlayer, computerPlayer) {
+
   prompt(`${winner}${MESSAGES.displayGrandWinner}`);
 
   userPlayer.resetScore();
@@ -234,6 +252,7 @@ function displayGrandWinner(winner, userPlayer, computerPlayer) {
 }
 
 function chooseCurrentPlayer() {
+
   prompt(MESSAGES.promptCurrentPlayer);
 
   while (true) {
@@ -252,6 +271,7 @@ function chooseCurrentPlayer() {
 }
 
 function gameIntro() {
+
   console.log("");
   prompt(MESSAGES.displayWelcome);
   prompt(MESSAGES.displayRules1);
@@ -261,64 +281,65 @@ function gameIntro() {
   setTimeout(startProgram, 9000);
 }
 
-function chooseSquare (board, currentPlayer) {
-  if (currentPlayer === 'user') {
+function chooseSquare(board, currentPlayer) {
+
+  if (currentPlayer === "user") {
     getUserMove(board);
     displayBoard(board);
-  }
-  else if (currentPlayer === 'computer'){
+  } else if (currentPlayer === "computer") {
     getComputerMove(board);
     displayBoard(board);
   }
 }
 
-function alternatePlayer (currentPlayer) {
-  if (currentPlayer === 'user') {
-    return 'computer';
-  } else {
-    return 'user';
-  } 
-} 
+function alternatePlayer(currentPlayer) {
 
-function validatePlayAgain () {
+  if (currentPlayer === "user") {
+    return "computer";
+  } else {
+    return "user";
+  }
+}
+
+function validatePlayAgain() {
 
   prompt(MESSAGES.promptPlayAgain);
-  
+
   let playAgain = READLINE.question().toLowerCase();
 
   while (!VALID_PLAY_AGAIN_INPUTS.includes(playAgain)) {
-  prompt(
-    `${MESSAGES.promptInvalidPlayAgain} ${joinerOr(
-      VALID_PLAY_AGAIN_INPUTS,
-      "; ",
-      " or "
-    )}`
-  )
-  playAgain = READLINE.question().toLowerCase();
-    }
+    prompt(
+      `${MESSAGES.promptInvalidPlayAgain} ${joinerOr(
+        VALID_PLAY_AGAIN_INPUTS,
+        "; ",
+        " or "
+      )}`
+    );
+    playAgain = READLINE.question().toLowerCase();
+  }
   return playAgain;
 }
 
 // MAIN PROGRAM
 gameIntro();
 function startProgram() {
-
+  
   let userPlayer = scoreManager();
   let computerPlayer = scoreManager();
 
   while (true) {
     let currentPlayer = PLAYS_FIRST;
-    if (currentPlayer === 'choose') {
+    if (currentPlayer === "choose") {
       currentPlayer = chooseCurrentPlayer();
     }
 
     let board = getBoard();
 
     while (true) {
-        displayBoard(board);
-        chooseSquare(board, currentPlayer);    
-        currentPlayer = alternatePlayer(currentPlayer);            
-        if (isNoSquaresLeft(board) || isWinner(board)) break;
+      displayBoard(board);
+      chooseSquare(board, currentPlayer);
+      currentPlayer = alternatePlayer(currentPlayer);
+      if (isNoSquaresLeft(board) || isWinner(board)) break;
     }
 
     if (isWinner(board)) {
@@ -332,7 +353,6 @@ function startProgram() {
     if (isGrandWinner(userPlayer, computerPlayer)) {
       displayGrandWinner(getWinner(board), userPlayer, computerPlayer);
     }
-
 
     let playAgain = validatePlayAgain();
     switch (playAgain) {
