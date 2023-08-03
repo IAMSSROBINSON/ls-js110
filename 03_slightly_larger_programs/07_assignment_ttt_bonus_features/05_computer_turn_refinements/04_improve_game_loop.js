@@ -16,9 +16,11 @@ const WINNING_COMBOS = [
   [1, 5, 9],
   [3, 5, 7],
 ];
-const PLAYERS = ["computer", "user", "choose"];
-const PLAYS_FIRST = PLAYERS[2];
+const MAIN_PLAYERS = ["computer", "user"];
+const PLAYS_FIRST_SETTINGS = ["computer", "user", "choose", "random"];
+const PLAYS_FIRST = PLAYS_FIRST_SETTINGS[3];
 const VALID_PLAY_AGAIN_INPUTS = ["y", "n", "yes", "no"];
+const PLAYER_SELECTION_MENU = ["1", "2"];
 
 function prompt(message) {
 
@@ -258,19 +260,21 @@ function chooseCurrentPlayer() {
   while (true) {
     let currentPlayerSelection = READLINE.question();
 
-    if (["1", "2", "3"].includes(currentPlayerSelection)) {
-      if (currentPlayerSelection === "1") {
-        return "user";
-      } else if (currentPlayerSelection === "2") {
-        return "computer";
-      } else if (currentPlayerSelection === "3") {
-        let randomPlayerChoice  = Math.floor(Math.random() * 1);
-        return PLAYERS[randomPlayerChoice];
-      }
+    if (PLAYER_SELECTION_MENU.includes(currentPlayerSelection)) {
+      if (currentPlayerSelection === PLAYER_SELECTION_MENU[0]) {
+        return MAIN_PLAYERS[0];
+      } else {
+        return MAIN_PLAYERS[1];
+      } 
     }
 
     prompt(MESSAGES.promptInvalidFirstPlayer);
   }
+}
+
+function getRandomPlayer () {
+    let randomPlayerChoice  = Math.floor(Math.random() * MAIN_PLAYERS.length);
+    return MAIN_PLAYERS[randomPlayerChoice];
 }
 
 function gameIntro() {
@@ -286,10 +290,10 @@ function gameIntro() {
 
 function chooseSquare(board, currentPlayer) {
 
-  if (currentPlayer === "user") {
+  if (currentPlayer === MAIN_PLAYERS[0]) {
     getUserMove(board);
     displayBoard(board);
-  } else if (currentPlayer === "computer") {
+  } else if (currentPlayer === MAIN_PLAYERS[1]) {
     getComputerMove(board);
     displayBoard(board);
   }
@@ -297,10 +301,10 @@ function chooseSquare(board, currentPlayer) {
 
 function alternatePlayer(currentPlayer) {
 
-  if (currentPlayer === "user") {
-    return "computer";
+  if (currentPlayer === MAIN_PLAYERS[0]) {
+    return MAIN_PLAYERS[1];
   } else {
-    return "user";
+    return MAIN_PLAYERS[0];
   }
 }
 
@@ -332,8 +336,10 @@ function startProgram() {
 
   while (true) {
     let currentPlayer = PLAYS_FIRST;
-    if (currentPlayer === "choose") {
+    if (currentPlayer === PLAYS_FIRST_SETTINGS[2]) {
       currentPlayer = chooseCurrentPlayer();
+    } else if (currentPlayer === PLAYS_FIRST_SETTINGS[3]) {
+      currentPlayer = getRandomPlayer();
     }
 
     let board = getBoard();
@@ -359,13 +365,13 @@ function startProgram() {
 
     let playAgain = validatePlayAgain();
     switch (playAgain) {
-      case "n":
-      case "no":
+      case VALID_PLAY_AGAIN_INPUTS[1]:
+      case VALID_PLAY_AGAIN_INPUTS[3]:
         prompt(MESSAGES.displayGoodbye);
         return false;
 
-      case "y":
-      case "yes":
+      case VALID_PLAY_AGAIN_INPUTS[0]:
+      case VALID_PLAY_AGAIN_INPUTS[2]:
         break;
     }
   }
