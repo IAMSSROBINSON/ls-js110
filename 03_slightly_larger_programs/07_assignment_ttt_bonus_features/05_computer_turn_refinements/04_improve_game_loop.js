@@ -281,6 +281,7 @@ function gameIntro() {
 
   console.log("");
   prompt(MESSAGES.displayWelcome);
+  prompt(MESSAGES.displayRules0);
   prompt(MESSAGES.displayRules1);
   prompt(MESSAGES.displayRules2);
   prompt(MESSAGES.displayRules3);
