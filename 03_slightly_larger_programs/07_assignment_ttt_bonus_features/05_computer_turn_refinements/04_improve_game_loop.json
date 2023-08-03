@@ -17,7 +17,7 @@
   "displayGoodbye" : "Thank you for playing Tic Tac Toe!", 
   "displayScoresHeader" : "SCORES:",
   "displayGrandWinner" : " : is The Grand Winner! Congratulations on your Success!",
-  "promptCurrentPlayer" : "Select who should play first:\n\n1) User\n2) Computer",
+  "promptCurrentPlayer" : "Select who should play first:\n\n1) User\n2) Computer\n3) Random",
   "promptInvalidFirstPlayer" : "Please make a valid number selection:\n\n1) User\n2) Computer",
   "promptInvalidPlayAgain" : "Please enter a valid input:",
   "displayInstigator" : ["\"You got spanked!\"", "\"Is that the best you've got! (Genuine question?)\"", "\"You take your beatings well!\"", "\"I can tell you're a beginner!\"", "\"You beating me is a myth!\"", "\"Is loser your first, middle or lastname!\""]

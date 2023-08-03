@@ -17,7 +17,7 @@ const WINNING_COMBOS = [
   [3, 5, 7],
 ];
 const PLAYERS = ["computer", "user", "choose"];
-const PLAYS_FIRST = PLAYERS[1];
+const PLAYS_FIRST = PLAYERS[2];
 const VALID_PLAY_AGAIN_INPUTS = ["y", "n", "yes", "no"];
 
 function prompt(message) {
@@ -256,13 +256,16 @@ function chooseCurrentPlayer() {
   prompt(MESSAGES.promptCurrentPlayer);
 
   while (true) {
-    let choice = READLINE.question();
+    let currentPlayerSelection = READLINE.question();
 
-    if (["1", "2"].includes(choice)) {
-      if (choice === "1") {
+    if (["1", "2", "3"].includes(currentPlayerSelection)) {
+      if (currentPlayerSelection === "1") {
         return "user";
-      } else {
+      } else if (currentPlayerSelection === "2") {
         return "computer";
+      } else if (currentPlayerSelection === "3") {
+        let randomPlayerChoice  = Math.floor(Math.random() * 1);
+        return PLAYERS[randomPlayerChoice];
       }
     }
 
