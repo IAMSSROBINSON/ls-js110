@@ -1,4 +1,5 @@
 function alphabeticNumberSort(arrayOfInts) {
+  let arrayOfIntsCopy = [...arrayOfInts];
   let sortedInts = [];
 
   let [
@@ -22,7 +23,7 @@ function alphabeticNumberSort(arrayOfInts) {
     seventeen,
     eighteen,
     nineteen,
-  ] = arrayOfInts;
+  ] = arrayOfIntsCopy;
 
   let objString = {
     zero,
@@ -49,13 +50,13 @@ function alphabeticNumberSort(arrayOfInts) {
 
   let objStringKeys = Object.keys(objString);
 
-  for (let index = 0; index < arrayOfInts.length; index++) {
-    objString[objStringKeys[index]] = arrayOfInts[index];
+  for (let index = 0; index < arrayOfIntsCopy.length; index++) {
+    objString[objStringKeys[index]] = arrayOfIntsCopy[index];
   }
 
   objStringKeys.sort();
   
-  for (let index = 0; index < arrayOfInts.length; index++) {
+  for (let index = 0; index < arrayOfIntsCopy.length; index++) {
     sortedInts.push(objString[objStringKeys[index]]);
   }
   return sortedInts;
@@ -131,5 +132,8 @@ A: Algorithm
 - end
 
 C: Code With Intent
+
+
+The Array.prototype.sort method can also take a function expression as an argument. If you didn't use one the first time, try refactoring the solution using a function expression.
 
 */
