@@ -135,7 +135,7 @@ isPalindromic:
 
 Mental Model:
 The string is received by the function.
-The function is slit in a character array.
+The function is split in a character array.
 - we want the string to be split into all potential substrings starting from the first char to the last 
 - we also want all potential substrings starting from the successor in line, this must increase each time for as long as the string is 
 - once we have those lists if the current substring === currentSubstring.split('').reverse().join('') then push to a new array
@@ -172,7 +172,6 @@ A: Algorithm
   - return this array full of palindromes
 - return the returned array full of palindromes from the original function
 - end
-
 
 C: Code With Intent
 
