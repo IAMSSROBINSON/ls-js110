@@ -1,4 +1,4 @@
-function staggeredCase(string, countedOrNot) {
+function staggeredCase(string, countedOrNot = false) {
   let finalString;
 
   if (countedOrNot) {
@@ -73,7 +73,5 @@ Set a countedOrNotCounted variable and initialize to true or false respectively.
 Extract both functions and accept the string argument and a true or false values for counted or not counted respectively.
 Define a if, else if statement according to the state of countedOrNotCounted variable and invoke the correspoinding function.
 Assign the return value to a previously declared variable and return this value from the invoked function return.
-
-
 
 */
