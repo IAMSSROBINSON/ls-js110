@@ -38,49 +38,78 @@ function getInitialCards (deck) {
   return initialCards;
 }
 
-function cardsManager (deck, playerInitialCards = []) {
+function cardsManager (deck) {
   let cards = [];
 
   function dealInitialCards (playerInitialCards) {
     return playerInitialCards.forEach((cardArray) => cards.push(cardArray));
   }
 
-  function showHand () {
+  function getHand () {
     return cards;
   }
 
   function hitCard () {
-    cards.push(deck.pop());
+    let newCard = deck.pop();
+    cards.push(deck.pop(newCard));
   }
 
   function resetHand () {
     cards = [];
   }
 
-  return {showHand, hitCard, resetHand, dealInitialCards};
+  return {getHand, hitCard, resetHand, dealInitialCards};
+}
+
+function getTotal (playerCards) {
+  let total = 0;
+  playerCards.forEach ((cardArray) => {
+    if (['J', 'Q', 'K'].includes(cardArray[1])) {
+      total += 10;
+    } else if (cardArray[1] === 'A') {
+      total += 11;
+    } else {
+      total += Number(cardArray[1]);
+    }
+  });
+  return total;
 }
 
 function displayCards (name, player) {
   if (name === DEALER_NAME) {
-    console.log(name, player.showHand()[0]);
+    console.log(name, player.getHand()[0]);
   } else {
-    console.log(name, player.showHand());
+    console.log(name, player.getHand());
+  }
+}
+
+
+function implementHitOrStick (hitOrStick, playerCardManager, deck) {
+  if (hitOrStick === 'h') {
+    playerCardManager.hitCard(deck);
   }
 }
 
 // MAIN PROGRAM
-let deck = initializeDeck(SUITS, VALUES);
-shuffle(deck);
+// while (true) {
+  let deck = initializeDeck(SUITS, VALUES);
+  shuffle(deck);
 
-let userInitialCards = getInitialCards(deck);
-let dealerInitialCards = getInitialCards(deck);
+  let userInitialCards = getInitialCards(deck);
+  let dealerInitialCards = getInitialCards(deck);
 
-let userCardsManager = cardsManager(deck);
-let dealerCardsManager = cardsManager(deck);
+  let userCardsManager = cardsManager(deck);
+  let dealerCardsManager = cardsManager(deck);
 
-userCardsManager.dealInitialCards(userInitialCards);
-dealerCardsManager.dealInitialCards(dealerInitialCards);
+  userCardsManager.dealInitialCards(userInitialCards);
+  dealerCardsManager.dealInitialCards(dealerInitialCards);
 
-displayCards(USER_NAME, userCardsManager);
-displayCards(DEALER_NAME, dealerCardsManager);
+  displayCards(USER_NAME, userCardsManager);
+  displayCards(DEALER_NAME, dealerCardsManager);
 
+  // USERS TURN: show the user their current sum
+  // and ask if they want to hit(h) or stick(s)
+
+  console.log(`Your current total is: ${getTotal(userCardsManager.getHand())}`);
+
+// }
