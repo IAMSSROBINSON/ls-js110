@@ -1,8 +1,10 @@
 // Shuffle deck
-// The order of the presentation of the cards needs to be randomized.
-// This means that when a deck is shuffled there should be no way to guess any particular card.
-// The currentCard should be swapped with a randomCard and the randomCard should be swapped with the currentCard so that the positions of the cards are swapped and no duplicates are created.
-// The deck should be supplied as an argument since we are mutating the deck generated.
+// The order of the presentation of the cards needs to be randomized
+// When a deck is shuffled there should be no way to guess any particular card
+// The currentCard should be swapped with a randomCard
+// and the randomCard should be swapped with the currentCard
+// so that the positions of the cards are swapped and no duplicates are created
+// The deck should be supplied as an argument since we are mutating the deck
 
 // Initialize deck
 const SUITS = ['H', 'D', 'S', 'C'];
@@ -12,8 +14,8 @@ const FACE_CARDS = ['J', 'Q', 'K', 'A'];
 function initializeDeck () {
   let deck = [];
 
-  SUITS.forEach((suit)=>{
-    VALUES.concat(FACE_CARDS).forEach((value)=>{
+  SUITS.forEach((suit) => {
+    VALUES.concat(FACE_CARDS).forEach((value) => {
       deck.push([suit, value]);
     });
   });
