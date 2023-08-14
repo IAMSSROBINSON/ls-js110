@@ -91,12 +91,10 @@ function getSumOfCards (playerCardManager) {
       sum += Number(card[1]);
     }
   });
-
   playerCardManager.getCards().filter((card) => {
     return card[1] === "A";
   }).forEach((_) => {
-    if (sum > 21) {
-      sum -= 10;}
+    if (sum > 21) sum -= 10;
   });
   return sum;
 }
