@@ -1,9 +1,13 @@
-// Users Turn
+// User's Turn
 // If the User total is 21 automatically go to the dealer turn
 // If the User total is < 21
 // then ask the user if they would like to Hit or Stick
 // Validate the entry for "h" or "s" values only with a function
+
 // If it's a hit then deal the User another card
+  // set userTurn() function
+  // add function hitCard() inside card manager
+  // invoke from userCardManager
 // Display the new User total
 // If the total is 21 then go to the dealers turn automatically
 // If the total is > 21 then the User busts and the Dealer wins
@@ -20,6 +24,7 @@ const INITIAL_CARD_COUNT = 2;
 const MAGIC_21 = 21;
 const readline = require('readline-sync');
 const validHitStickInputs = ['h', 's'];
+const DEALER_AUTO_STICK = 17;
 
 function initializeDeck() {
   let deck = [];
@@ -94,19 +99,19 @@ function getSumOfCards (playerCardManager) {
   playerCardManager.getCards().filter((card) => {
     return card[1] === "A";
   }).forEach((_) => {
-    if (sum > 21) sum -= 10;
+    if (sum > MAGIC_21) sum -= 10;
   });
   return sum;
 }
 
-function printSums (playerName, playerManager) {
-  console.log(`\n${playerName}: Sum of the cards:`, getSumOfCards(playerManager));
-}
+// function printSums (playerName, playerManager) {
+//   console.log(`\n${playerName}: Sum of the cards:`, getSumOfCards(playerManager));
+// }
 
 function validateHitStick () {
   let hitStick;
 
-  console.log(`Would you like to Hit('h') or Stick('s') ?`);
+  console.log(`\nWould you like to Hit('h') or Stick('s') ?`);
   while (true) {
     hitStick = readline.question().toLowerCase();
 
@@ -117,11 +122,40 @@ function validateHitStick () {
   return hitStick;
 }
 
-function dealersTurn (playerName, playerCardManager) {
-  console.log(`\n${playerName}'s Turn:`);
-  console.log(`${playerName}s cards are:, `, playerCardManager.getCards());
-  console.log(getSumOfCards(playerCardManager));
-  return true;
+function dealersTurn (dealerCardsManager, userCardsManager) {
+  console.log(`\n${DEALER_NAME}'s Turn:`);
+  displayCardsAndTotal(DEALER_NAME, dealerCardsManager);
+
+  while (getSumOfCards(dealerCardsManager) < DEALER_AUTO_STICK) {
+    if (getSumOfCards(userCardsManager) > MAGIC_21) {
+      return getSumOfCards(dealerCardsManager);
+    }
+    console.log(`\n${DEALER_NAME} hits:`);
+    dealerCardsManager.hitCard();
+    displayCardsAndTotal(DEALER_NAME, dealerCardsManager);
+
+    if (isBust(dealerCardsManager)) {
+      console.log(`Dealer Bust! with score ${getSumOfCards(dealerCardsManager)}. Total went over ${MAGIC_21}!`);
+      return !isBust(dealerCardsManager);
+    }
+    if (getSumOfCards(dealerCardsManager) === MAGIC_21) {
+      return getSumOfCards(dealerCardsManager);
+    }
+  }
+  console.log(`\nDealer Sticks.`);
+  return null;
+}
+
+function displayDealerCards (playerName, playerCardsManager) {
+  console.log(`${playerName}'s cards are:, `, playerCardsManager.getCards());
+}
+
+function usersTurn (userCardsManager, dealerCardsManager) {
+  userCardsManager.hitCard();
+  console.log(`Your cards are:`, getCards(userCardsManager));
+  printPlayerTotal(USER_NAME, userCardsManager);
+
+  showInitialCards(DEALER_NAME, dealerCardsManager);
 }
 
 function isTwentyOne (playerCardManager) {
@@ -129,7 +163,56 @@ function isTwentyOne (playerCardManager) {
 }
 
 function isBust (playerCardManger) {
-  return playerCardManger.getCards() > MAGIC_21;
+  return getSumOfCards(playerCardManger) > MAGIC_21;
+}
+
+function getWinner (userCardsManager, dealerCardsManager) {
+  let userTotal = getSumOfCards(userCardsManager);
+  let dealerTotal = getSumOfCards(dealerCardsManager);
+
+  if (userTotal > MAGIC_21) {
+    return DEALER_NAME;
+  } else if (dealerTotal > MAGIC_21) {
+    return USER_NAME;
+  } else if (userTotal > dealerTotal) {
+    return USER_NAME;
+  } else return DEALER_NAME;
+}
+
+function isTied (userCardsManager, dealerCardsManager) {
+  return getSumOfCards(userCardsManager) === getSumOfCards(dealerCardsManager);
+}
+
+function displayWinner (winner, userCardsManager, dealerCardsManager) {
+  // display dealerCards
+
+  console.log(`\nThe Winner is: ${winner}!\n`);
+  displayFinalHandsAndTotals(userCardsManager, dealerCardsManager);
+}
+
+function displayFinalHandsAndTotals (userCardsManager, dealerCardsManager) {
+  console.log(`FINAL HANDS & TOTALS:`);
+  displayCardsAndTotal(USER_NAME, userCardsManager);
+  displayCardsAndTotal(DEALER_NAME, dealerCardsManager);
+}
+
+function displayCardsAndTotal (playerName, playerCardManager) {
+  console.log(`\n${playerName}'s Cards:`, getCards(playerCardManager));
+  printPlayerTotal(playerName, playerCardManager);
+}
+
+
+function getCards (playerManager) {
+  return playerManager.getCards();
+}
+
+function printPlayerTotal (playerName, playerCardsManager) {
+  console.log(`${playerName}'s Total:`, getSumOfCards(playerCardsManager,`\n`));
+}
+
+function tiedGame (userCardsManager, dealerCardsManager) {
+  console.log(`\nThe Game is Tied!\n`);
+  displayFinalHandsAndTotals(userCardsManager, dealerCardsManager);
 }
 
 
@@ -151,27 +234,40 @@ showInitialCards(DEALER_NAME, dealerCardsManager);
 
 // console.log(mainDeck);
 // console.log(mainDeck.length);
-
-printSums(USER_NAME, userCardsManager);
+console.log('');
+printPlayerTotal(USER_NAME, userCardsManager);
 // printSums(DEALER_NAME, dealerCardsManager);
 // console.log(getSumOfCards(dealerCardsManager));
 
-let hitStickAnswer;
 if (isTwentyOne(userCardsManager)) {
-  console.log(`${USER_NAME}: has ${MAGIC_21}.`);
-  dealersTurn(DEALER_NAME, dealerCardsManager);
+  dealersTurn(dealerCardsManager);
 } else {
-  hitStickAnswer = validateHitStick ();
-  console.log('You chose: ', hitStickAnswer);
+  while (true) {
+    let hitOrStick = validateHitStick();
+
+    if (hitOrStick === 'h') {
+      console.clear();
+      console.log(`\nYou chose to Hit:`);
+      usersTurn(userCardsManager, dealerCardsManager);
+      if (isBust(userCardsManager)) {
+        console.log(`You Bust! with score ${getSumOfCards(userCardsManager)}. You went over 21!`);
+        break;
+      } else if (isTwentyOne(userCardsManager)) {
+        dealersTurn(dealerCardsManager, userCardsManager);
+        break;
+      }
+    } else {
+      console.clear();
+      console.log(`\nYou chose to Stick.`);
+      dealersTurn(dealerCardsManager, userCardsManager);
+      break;
+    }
+  }
 }
 
-switch (hitStickAnswer) {
-  case 'h':
-    userCardsManager.hitCard();
-    console.log(`Your cards are:`, userCardsManager.getCards());
-    printSums(USER_NAME, userCardsManager);
-    break;
-  case 's':
-    break;
+if (isTied(userCardsManager, dealerCardsManager)) {
+  tiedGame(userCardsManager, dealerCardsManager);
+} else {
+  let winner = getWinner(userCardsManager, dealerCardsManager);
+  displayWinner(winner, userCardsManager, dealerCardsManager);
 }
-
