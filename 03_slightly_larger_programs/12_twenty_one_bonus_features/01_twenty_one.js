@@ -123,14 +123,6 @@ function dealersTurn(dealerCardsManager, userCardsManager) {
   return null;
 }
 
-function usersTurn(userCardsManager, dealerCardsManager) {
-  userCardsManager.hitCard();
-  console.log(`Your cards are:`, getCards(userCardsManager));
-  printPlayerTotal(USER_NAME, userCardsManager);
-  console.log("");
-  showInitialCards(DEALER_NAME, dealerCardsManager);
-}
-
 function isTwentyOne(playerCardManager) {
   return getSumOfCards(playerCardManager) === MAGIC_21;
 }
@@ -208,6 +200,14 @@ function userInPlay(userCardsManager, dealerCardsManager) {
       break;
     }
   }
+}
+
+function usersTurn(userCardsManager, dealerCardsManager) {
+  userCardsManager.hitCard();
+  console.log(`Your cards are:`, getCards(userCardsManager));
+  printPlayerTotal(USER_NAME, userCardsManager);
+  console.log("");
+  showInitialCards(DEALER_NAME, dealerCardsManager);
 }
 
 function playAgain() {
