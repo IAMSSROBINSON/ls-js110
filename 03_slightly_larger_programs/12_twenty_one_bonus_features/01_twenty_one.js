@@ -188,10 +188,13 @@ function userInPlay(userCardsManager, dealerCardsManager) {
     if (hitOrStick === "h") {
       console.log(`\nYou chose to Hit:`);
       usersTurn(userCardsManager, dealerCardsManager);
-      if (isBust(userCardsManager) || isTwentyOne(userCardsManager)) {
-        if (isBust(userCardsManager)) {
+      
+      if (isBust(userCardsManager)) {
           console.log(`You Bust! with score ${getSumOfCards(userCardsManager)}. You went over 21!`);
+          break;
         }
+      else if (isTwentyOne(userCardsManager)) {
+        dealersTurn(dealerCardsManager, userCardsManager);
         break;
       }
     } else {
@@ -243,7 +246,7 @@ while (true) {
   printPlayerTotal(USER_NAME, userCardsManager);
 
   if (isTwentyOne(userCardsManager)) {
-    dealersTurn(dealerCardsManager);
+    dealersTurn(dealerCardsManager, userCardsManager);
   } else {
     userInPlay(userCardsManager, dealerCardsManager);
   }
