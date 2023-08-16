@@ -54,14 +54,16 @@ function cardsManager(mainDeck) {
   return { getCards, initialCards, hitCard };
 }
 
-function dealInitialCards (userCardsManager, dealerCardManager) {
-  userCardsManager.initialCards();
-  dealerCardManager.initialCards();
+function dealInitialCards (playerCardsManager) {
+  playerCardsManager.initialCards();
 }
 
-function showInitialCards(userCardsManager, dealerCardsManager) {
-  console.log(DEALER_NAME, dealerCardsManager.getCards()[0]);
-  console.log(USER_NAME, userCardsManager.getCards());
+function showInitialCards(playerName, playerCardsManager) {
+  if (playerName === DEALER_NAME) {
+    console.log(DEALER_NAME, playerCardsManager.getCards()[0]);
+  } else {
+    console.log(USER_NAME, playerCardsManager.getCards());
+  }
 }
 
 function getSumOfCards(playerCardManager) {
@@ -229,9 +231,12 @@ while (true) {
 
   let userCardsManager = cardsManager(mainDeck);
   let dealerCardsManager = cardsManager(mainDeck);
-  dealInitialCards(userCardsManager, dealerCardsManager);
 
-  showInitialCards(userCardsManager, dealerCardsManager);
+  dealInitialCards(userCardsManager);
+  dealInitialCards(dealerCardsManager);
+
+  showInitialCards(USER_NAME, userCardsManager);
+  showInitialCards(DEALER_NAME, dealerCardsManager);
 
   console.log("");
   printPlayerTotal(USER_NAME, userCardsManager);
