@@ -5,10 +5,10 @@ const USER_NAME = "User";
 const DEALER_NAME = "Dealer";
 const INITIAL_CARD_COUNT = 2;
 const MAGIC_21 = 21;
-const readline = require("readline-sync");
-const validHitStickInputs = ["h", "s"];
+const READLINE = require("readline-sync");
+const VALID_HIT_STICK_INPUTS = ["h", "s"];
 const DEALER_AUTO_STICK = 17;
-const VALID_YES_OR_NO = ["y", "n"];
+const VALID_YES_OR_NO = ["y", "n", "yes", "no"];
 
 function initializeDeck() {
   let deck = [];
@@ -88,9 +88,8 @@ function validateHitStick() {
 
   console.log(`\nWould you like to Hit('h') or Stick('s') ?`);
   while (true) {
-    hitStick = readline.question().toLowerCase();
-
-    if (validHitStickInputs.includes(hitStick)) break;
+    hitStick = READLINE.question().toLowerCase();
+    if (VALID_HIT_STICK_INPUTS.includes(hitStick)) break;
 
     console.log(`Invalid Input!\nPlease return 'h' to Hit or 's' to Stick:`);
   }
@@ -211,7 +210,7 @@ function playAgain() {
 
   let answer;
   while (true) {
-    answer = readline.question().toLowerCase();
+    answer = READLINE.question().toLowerCase();
     if (VALID_YES_OR_NO.includes(answer)) break;
 
     console.log(`\nInvalid Input!\nPlease return 'y' for Yes or 'n' for No :`);
