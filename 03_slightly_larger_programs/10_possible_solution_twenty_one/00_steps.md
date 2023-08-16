@@ -151,3 +151,43 @@ The function receives the current deckArray and defines a for loop that counts b
 The player needs to be dealt 2 cards that can be seen.
 The dealer needs to be dealt 2 cards, 1 of which can be seen.
 The deck should be reflected / updated when the cards are dealt
+
+
+<br>
+
+### Users Turn
+The user has been dealt their initial 2 cards with both on display.
+The dealer has been dealt their initial 2 cards with 1 on display.
+
+They are shown the sum total of their current 2 cards.
+It is now the Users turn to hit or stick.
+
+- Prompt the user to hit or stick
+- declare a variable hitOrStickAnswer and initialize to the users input.
+- If the answer is not 'h' for hit, or 's' for stick then inform the user they have made an error and to choose 'h' or 's' values for their answer. 
+- Continue to display this error message until one of the correct values are entered.
+- When a correct value is entered then it will be assigned to the variable and the program will resume.
+  
+- The user has chosen 'h' to hit a new card
+- their current hand + new card should be shown
+- their new sum total should be displayed 
+- if the sum total is over 21 then display bust - they lost the game
+- if the sum total is equal to 21 then it is automatically the dealers turn 
+- if the sum total is less than 21 then ask the user if they want to hit or stick again
+
+<br>
+
+### Dealers Turn
+If the user has busted the game is over and the dealer won by default.
+If the user has 21 then it is the dealers turn.
+If the user chose to stick (and therefore has less than 21 currently) then it is the dealers turn.
+
+loop while the dealer has less than 17 the dealer must hit 
+  - the dealer hits and has a new total
+    - if the total is less than 17 then hit again
+  - if the total is greater than 21 then bust and user wins
+  - if the dealer has 21 then break and compare scores
+    - if both user and dealer have 21 then it is a tie
+  - if the total is greater than 17 and less than 21 then stick and compare score
+    - if dealer > user then dealer wins
+    - if user > dealer then user wins

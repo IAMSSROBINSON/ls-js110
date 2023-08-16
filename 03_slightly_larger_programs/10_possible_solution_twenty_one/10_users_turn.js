@@ -1,20 +1,3 @@
-// User's Turn
-// If the User total is 21 automatically go to the dealer turn
-// If the User total is < 21
-// then ask the user if they would like to Hit or Stick
-// Validate the entry for "h" or "s" values only with a function
-
-// If it's a hit then deal the User another card
-  // set userTurn() function
-  // add function hitCard() inside card manager
-  // invoke from userCardManager
-// Display the new User total
-// If the total is 21 then go to the dealers turn automatically
-// If the total is > 21 then the User busts and the Dealer wins
-// Display Bust message
-// Else ask the user if they want to Hit or Stick and repeat this loop
-// If it's a stick then it is the dealers turn
-
 const SUITS = ["H", "D", "S", "C"];
 const VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 const FACE_CARDS = ["J", "Q", "K", "A"];
@@ -104,10 +87,6 @@ function getSumOfCards (playerCardManager) {
   return sum;
 }
 
-// function printSums (playerName, playerManager) {
-//   console.log(`\n${playerName}: Sum of the cards:`, getSumOfCards(playerManager));
-// }
-
 function validateHitStick () {
   let hitStick;
 
@@ -138,23 +117,18 @@ function dealersTurn (dealerCardsManager, userCardsManager) {
       console.log(`Dealer Bust! with score ${getSumOfCards(dealerCardsManager)}. Total went over ${MAGIC_21}!`);
       return !isBust(dealerCardsManager);
     }
-    if (getSumOfCards(dealerCardsManager) === MAGIC_21) {
-      return getSumOfCards(dealerCardsManager);
-    }
+    if (getSumOfCards(dealerCardsManager)
+    === MAGIC_21) getSumOfCards(dealerCardsManager);
   }
   console.log(`\nDealer Sticks.`);
   return null;
-}
-
-function displayDealerCards (playerName, playerCardsManager) {
-  console.log(`${playerName}'s cards are:, `, playerCardsManager.getCards());
 }
 
 function usersTurn (userCardsManager, dealerCardsManager) {
   userCardsManager.hitCard();
   console.log(`Your cards are:`, getCards(userCardsManager));
   printPlayerTotal(USER_NAME, userCardsManager);
-
+  console.log('');
   showInitialCards(DEALER_NAME, dealerCardsManager);
 }
 
@@ -184,8 +158,6 @@ function isTied (userCardsManager, dealerCardsManager) {
 }
 
 function displayWinner (winner, userCardsManager, dealerCardsManager) {
-  // display dealerCards
-
   console.log(`\nThe Winner is: ${winner}!\n`);
   displayFinalHandsAndTotals(userCardsManager, dealerCardsManager);
 }
@@ -215,13 +187,32 @@ function tiedGame (userCardsManager, dealerCardsManager) {
   displayFinalHandsAndTotals(userCardsManager, dealerCardsManager);
 }
 
+function userInPlay (userCardsManager, dealerCardsManager) {
+  while (true) {
+    let hitOrStick = validateHitStick();
+    console.clear();
+
+    if (hitOrStick === 'h') {
+      console.log(`\nYou chose to Hit:`);
+      usersTurn(userCardsManager, dealerCardsManager);
+      if (isBust(userCardsManager) || isTwentyOne(userCardsManager)) {
+        if (isBust(userCardsManager)) {
+          console.log(`You Bust! with score ${getSumOfCards(userCardsManager)}. You went over 21!`);
+        }
+        break;
+      }
+    } else {
+      console.log(`\nYou chose to Stick.`);
+      dealersTurn(dealerCardsManager, userCardsManager);
+      break;
+    }
+  }
+}
 
 console.log(`\nThe Game Of 21 Has Officially Started!`);
 console.log(`\nThe Initial Cards are being dealt:\n`);
 let mainDeck = initializeDeck();
 shuffleDeck(mainDeck);
-
-// console.log(mainDeck);
 
 let userCardsManager = cardsManager(mainDeck);
 userCardsManager.initialCards();
@@ -232,37 +223,13 @@ dealerCardsManager.initialCards();
 showInitialCards(USER_NAME, userCardsManager);
 showInitialCards(DEALER_NAME, dealerCardsManager);
 
-// console.log(mainDeck);
-// console.log(mainDeck.length);
 console.log('');
 printPlayerTotal(USER_NAME, userCardsManager);
-// printSums(DEALER_NAME, dealerCardsManager);
-// console.log(getSumOfCards(dealerCardsManager));
 
 if (isTwentyOne(userCardsManager)) {
   dealersTurn(dealerCardsManager);
 } else {
-  while (true) {
-    let hitOrStick = validateHitStick();
-
-    if (hitOrStick === 'h') {
-      console.clear();
-      console.log(`\nYou chose to Hit:`);
-      usersTurn(userCardsManager, dealerCardsManager);
-      if (isBust(userCardsManager)) {
-        console.log(`You Bust! with score ${getSumOfCards(userCardsManager)}. You went over 21!`);
-        break;
-      } else if (isTwentyOne(userCardsManager)) {
-        dealersTurn(dealerCardsManager, userCardsManager);
-        break;
-      }
-    } else {
-      console.clear();
-      console.log(`\nYou chose to Stick.`);
-      dealersTurn(dealerCardsManager, userCardsManager);
-      break;
-    }
-  }
+  userInPlay(userCardsManager, dealerCardsManager);
 }
 
 if (isTied(userCardsManager, dealerCardsManager)) {
