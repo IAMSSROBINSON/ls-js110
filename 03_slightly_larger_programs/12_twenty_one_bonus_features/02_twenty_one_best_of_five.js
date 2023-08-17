@@ -11,7 +11,7 @@ const DEALER_AUTO_STICK = 17;
 const VALID_YES_OR_NO = ["y", "n", "yes", "no"];
 const GRAND_WINNING_SCORE = 3;
 const GRAND_WINNING_MESSAGE = ': IS THE GRAND WINNER!';
-let bestOfFiveComplete = false;
+const END_OF_PLAY = [false];
 
 function initializeDeck() {
   let deck = [];
@@ -308,7 +308,7 @@ while (true) {
       increaseWinnerScore(winner, userScoreManager, dealerScoreManager);
       if (isGrandWinner(userScoreManager, dealerScoreManager)) {
         console.log(`\n${winner.toUpperCase()}${GRAND_WINNING_MESSAGE}`);
-        bestOfFiveComplete = !bestOfFiveComplete;
+        END_OF_PLAY[0] = !END_OF_PLAY[0];
         displayScores(userScoreManager, dealerScoreManager);
         resetScores(userScoreManager, dealerScoreManager);
         break;
@@ -316,7 +316,10 @@ while (true) {
     }
     displayScores(userScoreManager, dealerScoreManager);
     let answer = playAgain();
-    if (answer === "n") break;
+    if (answer === "n") {
+      END_OF_PLAY[0] = !END_OF_PLAY[0];
+      break;
+    }
   }
-  if (bestOfFiveComplete) break;
+  if (END_OF_PLAY[0]) break;
 }
