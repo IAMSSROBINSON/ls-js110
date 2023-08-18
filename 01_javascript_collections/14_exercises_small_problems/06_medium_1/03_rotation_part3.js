@@ -113,9 +113,9 @@ Mental Model:
 - when iterations complete coerce back to number and return
 
 
-
 D: Data Structure
 Array: I will utilize an array data structure to manipulate the digits of a number when coerced from number to string to array of characters.
+
 
 A: Algorithm
 - start
