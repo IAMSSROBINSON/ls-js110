@@ -31,6 +31,7 @@ function minilang (string) {
       methodToInvoke(register, stack);
     }
   }
+  return null;
 }
 
 function isNumber (element) {
