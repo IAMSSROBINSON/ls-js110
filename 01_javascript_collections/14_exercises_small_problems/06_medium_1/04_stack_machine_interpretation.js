@@ -281,8 +281,7 @@ Mental Model:
 receive string
 split to elementArray
 register value should be preset to 0
-if first value is int shift from array and assign to register value else return register value(0)
-
+if first value is not int return register value
 for each element if the element is int assign as register value, else match string to predefined object of commands that when the key is matched invokes a function pertaining to the keyName. Define the functions outside of the main calling function since they will have global scope they will be accessible. 
 
 
