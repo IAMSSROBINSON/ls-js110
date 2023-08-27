@@ -5,21 +5,17 @@ function triangle (length1, length2, length3) {
     return 'invalid';
   }
 
-  if (isEq(arrayOfLengths)) {
-    return 'equilateral';
-  } else if (isIso(arrayOfLengths)) {
-    return 'isosceles';
-  } else return 'scalene';
+  return isEq(arrayOfLengths) || isIso(arrayOfLengths) || 'scalene';
 }
 
 function isIso (arrayOfLengths) {
   let [arg1, arg2, arg3] = arrayOfLengths;
-  return arg1 === arg2 || arg2 === arg3 || arg3 === arg1;
+  return arg1 === arg2 || arg2 === arg3 || arg3 === arg1 ?  'isosceles' : null;
 }
 
 function isEq (arrayOfLengths) {
   let comparisonValue = arrayOfLengths[0];
-  return arrayOfLengths.every(element => element === comparisonValue);
+  return arrayOfLengths.every(element => element === comparisonValue) ? 'equilateral' : null;
 }
 
 function isValidTriangle (arrayOfLengths) {
