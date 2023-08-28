@@ -4,25 +4,21 @@ function triangle (degree1, degree2, degree3) {
   if (!isTriangle(degreesArray)) {
     return 'invalid';
   }
-  return isRight(degreesArray) || isAcute(degreesArray) || isObtuse(degreesArray);
+  return isRight(degreesArray) ||
+  isAcute(degreesArray) ||
+  isObtuse(degreesArray);
 }
 
 function isRight (degreesArray) {
-  if (degreesArray.some(element => element === 90)) {
-    return 'right';
-  }
+  return degreesArray.some(element => element === 90) ? 'right' : null;
 }
 
 function isAcute (degreesArray) {
-  if (degreesArray.every(element => element < 90)) {
-    return 'acute';
-  }
+  return degreesArray.every(element => element < 90) ? 'acture' : null;
 }
 
 function isObtuse (degreesArray) {
-  if (degreesArray.some(element => element > 90)) {
-    return 'obtuse';
-  }
+  return degreesArray.some(element => element > 90) ? 'obtuse' : null;
 }
 
 function isTriangle(degreesArray) {
