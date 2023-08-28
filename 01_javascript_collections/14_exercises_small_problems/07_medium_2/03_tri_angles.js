@@ -14,7 +14,7 @@ function isRight (degreesArray) {
 }
 
 function isAcute (degreesArray) {
-  return degreesArray.every(element => element < 90) ? 'acture' : null;
+  return degreesArray.every(element => element < 90) ? 'acute' : null;
 }
 
 function isObtuse (degreesArray) {
