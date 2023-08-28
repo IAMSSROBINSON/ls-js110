@@ -133,6 +133,6 @@ return:
 - end
 
 
-C: Code With Intenta
+C: Code With Intent
 
 */
