@@ -1,16 +1,16 @@
 function featured (numberArgument) {
-  const limit = 9876543201;
-  if (numberArgument === limit) {
+  const LIMIT = 9876543201;
+  if (numberArgument === LIMIT) {
     return "There is no possible number that fulfills those requirements.";
   }
 
-  for (let idx = numberArgument + 1; idx < limit; idx++) {
+  for (let idx = numberArgument + 1; idx < LIMIT; idx++) {
     if (isOdd(idx) &&
     isMultipleOf7Function(idx) && isEachDigitAppearsOnlyOnceFunction(idx)) {
       return idx;
     }
   }
-  return limit;
+  return LIMIT;
 }
 
 function isOdd (currentNum) {
