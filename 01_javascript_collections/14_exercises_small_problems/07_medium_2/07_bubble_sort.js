@@ -1,6 +1,7 @@
 function bubbleSort (array) {
 
   for (let idx1 = 0; idx1 < array.length; idx1++) {
+    let swapped = false;
     const currentElement = array[idx1];
     console.log('currentElement', currentElement);
 
@@ -12,8 +13,10 @@ function bubbleSort (array) {
         let temp = array[idx1];
         array[idx1] = array[idx2];
         array[idx2] = temp;
+        swapped = true;
       }
     }
+    if (!swapped) break;
   }
   console.log(array);
   return array;
