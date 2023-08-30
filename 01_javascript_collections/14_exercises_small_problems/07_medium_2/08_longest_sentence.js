@@ -1,7 +1,16 @@
 function longestSentence (string) {
-  return getLongestSentence(getSentences(getSentenceIdentifierIndexes(string.split('')), string.split('')));
+  let theLongestSentence =  getLongestSentence(getSentences(getSentenceIdentifierIndexes(string.split('')), string.split('')));
+  console.log(`\nLongest Sentence: ${theLongestSentence}\n`);
+  console.log(`The Longest sentence: has ${getSentenceLength(theLongestSentence)} words.\n\n`);
+  return theLongestSentence;
 }
 
+function getSentenceLength (sentence) {
+  return sentence.split(" ").length;
+}
+
+// Longest Sentence: "To be or not to be!"
+// The longest sentence has 6 words.
 function getLongestSentence (sentences) {
   return sentences.sort((a, b) => {
     return b.split(" ").length - a.split(" ").length;
@@ -42,7 +51,8 @@ let longText =
   'that that nation might live. It is altogether fitting and proper that ' +
   'we should do this.';
 
-let longerText = longText + 'But, in a larger sense, we can not dedicate, we can not consecrate, ' +
+let longerText = longText +
+  'But, in a larger sense, we can not dedicate, we can not consecrate, ' +
   'we can not hallow this ground. The brave men, living and dead, who ' +
   'struggled here, have consecrated it, far above our poor power to add ' +
   'or detract. The world will little note, nor long remember what we say ' +
@@ -57,25 +67,23 @@ let longerText = longText + 'But, in a larger sense, we can not dedicate, we can
   'and that government of the people, by the people, for the people, ' +
   'shall not perish from the earth.';
 
-
-let sentence1 = "Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal.";
-console.log(longestSentence(longText) === sentence1);
+longestSentence(longText);
+// Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal.
 //
 // The longest sentence has 30 words.
-// console.log('longerText:', longerText);
 
-let sentence2 = "It is rather for us to be here dedicated to the great task remaining before us -- that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion -- that we here highly resolve that these dead shall not have died in vain -- that this nation, under God, shall have a new birth of freedom -- and that government of the people, by the people, for the people, shall not perish from the earth.";
-console.log(longestSentence(longerText) === sentence2);
+longestSentence(longerText);
+// It is rather for us to be here dedicated to the great task remaining before us -- that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion -- that we here highly resolve that these dead shall not have died in vain -- that this nation, under God, shall have a new birth of freedom -- and that government of the people, by the people, for the people, shall not perish from the earth.
 //
 // The longest sentence has 86 words.
 
-let sentence3 = "Where do you think you're going?"
-console.log(longestSentence("Where do you think you're going? What's up, Doc?") === sentence3);
+longestSentence("Where do you think you're going? What's up, Doc?");
+// Where do you think you're going?
 //
 // The longest sentence has 6 words.
 
-let sentence4 = "To be or not to be!";
-console.log(longestSentence("To be or not to be! Is that the question?") === sentence4);
+longestSentence("To be or not to be! Is that the question?");
+// To be or not to be!
 //
 // The longest sentence has 6 words.
 
