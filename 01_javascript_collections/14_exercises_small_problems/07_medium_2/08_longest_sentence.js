@@ -1,24 +1,39 @@
 function longestSentence (string) {
+  let charArr = string.split('');
+
+  let indexes = getSentenceIdentifierIndexes(charArr);
+  let sentences = getSentences(indexes, charArr);
+
+  return getLongestSentence(sentences);
+}
+
+function getLongestSentence (sentences) {
+  return sentences.sort((a, b) => {
+    return b.split(" ").length - a.split(" ").length;
+  })[0];
+}
+
+function getSentences (indexes, charArr) {
   let sentences = [];
   let startIdx = 0;
   let toIdx = 0;
-  const validSymbols = ['.', '!', '?'];
-  let charArr = string.split('');
-  let indexes = [];
-
-  charArr.forEach((element, index) => {
-    if (validSymbols.includes(element)) indexes.push(index);
-  });
 
   for (let index = 0; index < indexes.length; index++) {
     toIdx = indexes[index];
     sentences.push(charArr.slice(startIdx, toIdx + 1).join('').trim());
     startIdx = toIdx + 1;
   }
+  return sentences;
+}
 
-  return sentences.sort((a, b) => {
-    return b.split(" ").length - a.split(" ").length;
-  })[0];
+function getSentenceIdentifierIndexes (charArr) {
+  const validSymbols = ['.', '!', '?'];
+
+  let indexes = [];
+  charArr.forEach((element, index) => {
+    if (validSymbols.includes(element)) indexes.push(index);
+  });
+  return indexes;
 }
 
 let longText =
