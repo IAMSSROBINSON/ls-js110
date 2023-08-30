@@ -1,10 +1,5 @@
 function longestSentence (string) {
-  let charArr = string.split('');
-
-  let indexes = getSentenceIdentifierIndexes(charArr);
-  let sentences = getSentences(indexes, charArr);
-
-  return getLongestSentence(sentences);
+  return getLongestSentence(getSentences(getSentenceIdentifierIndexes(string.split('')), string.split('')));
 }
 
 function getLongestSentence (sentences) {
