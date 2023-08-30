@@ -1,26 +1,19 @@
 function longestSentence (string) {
-  console.log('longerText string:', string.length);
   let sentences = [];
   let startIdx = 0;
   let toIdx = 0;
   const validSymbols = ['.', '!', '?'];
   let charArr = string.split('');
+  let indexes = [];
 
-  let symbolsArr = charArr.filter((element) => {
-    return validSymbols.includes(element);
+  charArr.forEach((element, index) => {
+    if (validSymbols.includes(element)) indexes.push(index);
   });
-  console.log('symbolsArr:', symbolsArr.length)
 
-  for (let index = 0; index < symbolsArr.length; index++) {
-    toIdx = charArr.indexOf(symbolsArr[index]);
-    console.log('startIdx:', startIdx);
-    console.log('toIdx:', toIdx);
-
-    let sentence = charArr.slice(startIdx, (toIdx + 1));
-    sentences.push(sentence.join('').trim());
-    console.log(`sentence ${index}:`, sentence);
-    console.log('sentences:', sentences);
-    startIdx = toIdx;
+  for (let index = 0; index < indexes.length; index++) {
+    toIdx = indexes[index];
+    sentences.push(charArr.slice(startIdx, toIdx + 1).join('').trim());
+    startIdx = toIdx + 1;
   }
 
   return sentences.sort((a, b) => {
@@ -54,23 +47,25 @@ let longerText = longText + 'But, in a larger sense, we can not dedicate, we can
   'and that government of the people, by the people, for the people, ' +
   'shall not perish from the earth.';
 
-// console.log(longestSentence(longText));
-// Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal.
+
+let sentence1 = "Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal.";
+console.log(longestSentence(longText) === sentence1);
 //
 // The longest sentence has 30 words.
 // console.log('longerText:', longerText);
-console.log(longestSentence(longerText));
-// It is rather for us to be here dedicated to the great task remaining before us -- that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion -- that we here highly resolve that these dead shall not have died in vain -- that this nation, under God, shall have a new birth of freedom -- and that government of the people, by the people, for the people, shall not perish from the earth.
+
+let sentence2 = "It is rather for us to be here dedicated to the great task remaining before us -- that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion -- that we here highly resolve that these dead shall not have died in vain -- that this nation, under God, shall have a new birth of freedom -- and that government of the people, by the people, for the people, shall not perish from the earth.";
+console.log(longestSentence(longerText) === sentence2);
 //
 // The longest sentence has 86 words.
 
-// console.log(longestSentence("Where do you think you're going? What's up, Doc?"));
-// Where do you think you're going?
+let sentence3 = "Where do you think you're going?"
+console.log(longestSentence("Where do you think you're going? What's up, Doc?") === sentence3);
 //
 // The longest sentence has 6 words.
 
-// console.log(longestSentence("To be or not to be! Is that the question?"));
-// To be or not to be!
+let sentence4 = "To be or not to be!";
+console.log(longestSentence("To be or not to be! Is that the question?") === sentence4);
 //
 // The longest sentence has 6 words.
 
