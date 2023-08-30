@@ -9,8 +9,6 @@ function getSentenceLength (sentence) {
   return sentence.split(" ").length;
 }
 
-// Longest Sentence: "To be or not to be!"
-// The longest sentence has 6 words.
 function getLongestSentence (sentences) {
   return sentences.sort((a, b) => {
     return b.split(" ").length - a.split(" ").length;
