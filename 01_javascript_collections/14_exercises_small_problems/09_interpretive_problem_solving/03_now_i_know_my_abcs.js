@@ -52,6 +52,10 @@ Write a function that takes a word string as an argument and returns true if the
 
 
 P: Understanding The Problem
+Create a function that takes a string.
+Compare the characters of the string to the characters in the blocks.
+You can only use a block once.
+Return true if the string can be spelled(case insensitive) else return false.
 
 Input: String(Single word)
 Output: Boolean(true/false => if word can be spelled using blocks)
@@ -65,14 +69,13 @@ Rules:
     - can only use block once per wordString
   - case insensitive so default all toLowerCase()
 
-
   Implicit:
   - will always be a valid string argument
   - wordStringArgument may be upper or lowercase so default all to lowercase => argument and blocks for comparison
   - order of letters in batch is of no consequence
 
 Questions:
-- Are the blocks stored in an object format or may the be stored in some other format?
+- Are the blocks stored in an object format or may they be stored in some other format?
 - How will use eliminate a block once it has been used once?
 
 
