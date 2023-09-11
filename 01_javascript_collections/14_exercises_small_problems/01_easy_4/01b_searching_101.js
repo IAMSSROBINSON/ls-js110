@@ -26,7 +26,7 @@ let readline = require('readline-sync');
 
 Write a program that solicits six numbers from the user and logs a message that describes whether the sixth number appears among the first five numbers.
 
-Concept:
+Problem:
 - ask the user to input a number six times
 - if the last input (the sixth number) is present within the first five:
   - log: sixth number was entered within the first 5 numbers, else
