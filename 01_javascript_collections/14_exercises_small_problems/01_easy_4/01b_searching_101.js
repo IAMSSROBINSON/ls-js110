@@ -1,69 +1,41 @@
-let readline = require('readline-sync');
+const readline = require('readline-sync');
+let placements = ['1st', '2nd', '3rd', '4th', '5th', '6th'];
+let userInputs = [];
 
-(function comparingSixthInput () {
-  let countUpperBound = 6;
-  let arrayOfInputs = [];
-  let stringCounts = ['1st', '2nd', '3rd', '4th', '5th', '6th'];
+for (let idx = 0; idx < placements.length; idx++) {
 
-  for (let idx = 0; idx < countUpperBound; idx++) {
-    console.log(`Enter the ${stringCounts[idx]} number:`);
-    let input = readline.question();
+  console.log(`Enter the ${placements[idx]} number: `);
+  userInputs.push(readline.question());
+}
 
-    arrayOfInputs.push(Number(input));
-  }
-
-  let sixthInput = arrayOfInputs[5];
-  let firstFiveNumbersArr = arrayOfInputs.slice(0, arrayOfInputs.length - 1);
-  if (firstFiveNumbersArr
-    .some(element => element === sixthInput)) {
-    console.log(`The number ${sixthInput} appears in ${firstFiveNumbersArr}.`);
-  } else {
-    console.log(`The number ${sixthInput} does not appear in ${firstFiveNumbersArr}.`);
-  }
-})();
-
+if (userInputs.slice(0, userInputs.length - 1)
+  .includes(userInputs[userInputs.length - 1])) {
+  console.log(`The number ${userInputs[userInputs.length - 1]} appears in ${userInputs.slice(0, userInputs.length - 1)}`);
+} else {
+  console.log(`The number ${userInputs[userInputs.length - 1]} does not appear in ${userInputs.slice(0, userInputs.length - 1)}`);
+}
 /*
 
 Write a program that solicits six numbers from the user and logs a message that describes whether the sixth number appears among the first five numbers.
 
-Problem:
-- ask the user to input a number six times
-- if the last input (the sixth number) is present within the first five:
-  - log: sixth number was entered within the first 5 numbers, else
-  - log: sixth number was not entered within the first 5 numbers
+Enter the 1st number: 25
+Enter the 2nd number: 15
+Enter the 3rd number: 20
+Enter the 4th number: 17
+Enter the 5th number: 23
+Enter the last number: 17
 
-Algorithm:
-- start
-- set arrayOfInputs = [];
-- loop from idx 0 to 6; while idx < 6; idx++
-  - prompt user for input
-  - push input to arrayOfInputs
-- loop has concluded
-- set variable sixthInput = arrayOfInputs[arrayOfInputs.length - 1]
-- new loop over arrayOfInputs, idx 0; idx < arrayOfInputs.length - 1; idx++
-  - if sixthInput === arrayOfInputs[idx]
-    - log: sixth number was entered within the first 5 numbers, else
-    - log: sixth number was not entered within the first 5 numbers
-- end
+The number 17 appears in 25,15,20,17,23.
 
-Questions:
-- should the input be validated for its status as a number?
+-----
 
-Concept definitions:
+Enter the 1st number: 25
+Enter the 2nd number: 15
+Enter the 3rd number: 20
+Enter the 4th number: 17
+Enter the 5th number: 23
+Enter the last number: 18
 
-Array.prototype.includes()
-- is an inbuilt JavaScript string and array method
-- is called on the array object literal or on an instance thereof
-- takes an argument to be matched to the contents of the array object
-- returns if argument is matched to an array element, else returns false
-- it does not tell you how many times the argument is matched
-
-Array.prototype.some()
-- is a built in JavaScript array method
-- it is called on an array object literal or instance thereof
-- it takes a callback function that is invoked on each element within the array
-- the callback function takes an argument that acts as the current element within the array being iterated on
-- it returns true if at least 1 instance of the argument returns a truthy value against the element being iterated on, otherwise it returns false
-- it does not tell you how many times the argument is matched
+The number 18 does not appear in 25,15,20,17,23.
 
 */
