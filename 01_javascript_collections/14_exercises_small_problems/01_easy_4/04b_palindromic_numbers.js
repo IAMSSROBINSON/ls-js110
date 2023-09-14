@@ -73,8 +73,15 @@ Within the body of the function on `line 2` a `return` statement evaluates wheth
 
 If the number reads the same forwards and backwards the expression evaluates to `true` and returns boolean `true` otherwise it returns boolean `false` and it is this value that is returned to the caller (as we began) on line 4 - to output the value to the console thereby confirming or denying the numbers status as a Palindromic number.
 
+*/
 
+/*
 
+Further Exploration
+Suppose the number argument begins with one or more 0s. Will the solution still work? Why or why not? Is there any way to address this?
 
+It would not work with leading 0s since JavaScript removes these since it will treat the value as an octal (base 8) value if the numbers are between 0-7 or decimal(base 10) if it encounters numbers 8, 9.  
+
+To make it work the number can be immediately coerced to a string and the reversed string can be compared to itself thereby maintaining the leading zeros for both comparisions.
 
 */
