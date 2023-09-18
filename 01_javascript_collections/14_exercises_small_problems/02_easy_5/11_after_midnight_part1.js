@@ -1,3 +1,18 @@
+function timeOfDay (number) {
+
+  const MINUTES_IN_A_DAY = 1440;
+  const MINUTES_IN_HOUR = 60;
+
+  number = ((number % MINUTES_IN_A_DAY) + MINUTES_IN_A_DAY) % MINUTES_IN_A_DAY;
+
+  let hours = Math.floor(number / MINUTES_IN_HOUR);
+  let minutes = number % MINUTES_IN_HOUR;
+
+  let formatHours = String(hours).padStart(2, "0");
+  let formatMinutes = String(minutes).padStart(2, "0");
+
+  return `${formatHours}:${formatMinutes}`;
+}
 
 console.log(timeOfDay(0) === "00:00");
 console.log(timeOfDay(-3) === "23:57");
@@ -6,6 +21,7 @@ console.log(timeOfDay(-1437) === "00:03");
 console.log(timeOfDay(3000) === "02:00");
 console.log(timeOfDay(800) === "13:20");
 console.log(timeOfDay(-4231) === "01:29");
+
 
 /*
 
@@ -19,7 +35,7 @@ P: Understanding The Problem
 Clarification:
 Positive number of minutes => after midnight
 Negative number of minutes => before midnight
-Create a function that accepts a number(positive or negative) minutes and returns the time in a 24 hour format (hh:mm).
+Create a function that accepts a number(positive, negative or 0) minutes and returns the time in a 24 hour format (hh:mm).
 
 Input: number(positive or negative)
 Output: string(time => hh:mm)
@@ -31,56 +47,52 @@ Rules:
   - should work with an integer input
 
   Implicit:
-  - 
+  - argument could be 0
+  - argument could be negative, less than 0
+  - argument could be positive, greater than 0
 
 Questions:
 n/a
 
 E: Examples and Test Cases
 
-timeOfDay(-1437) === "00:03"
+Input: -1437
+Output: "00:03"
 
-Positive number of minutes => after midnight(morning to midday)
-Negative number of minutes => before midnight(midday upto midnight)
-
-The result is 3 minutes past midnight the previous day as if counting backwards anticlockwise
-
-
-1hr => 60 minutes
-12hrs => 720 minutes
-24hrs => 1440 minutes
-
-- 24:00 (midnight) => 0 / 1440
-- 23:00 => 1380
-- 22:00 => 1320
-- 21:00 => 1260
-- 20:00 => 1200
-- 19:00 => 1140
-- 18:00 => 1080
-- 17:00 => 1020
-- 16:00 => 960
-- 15:00 => 900
-- 14:00 => 840
-- 13:00 => 780
-- 12:00 => 720
-- 11:00 => 660
-- 10:00 => 600
-- 09:00 => 540
-- 08:00 => 480
-- 07:00 => 420
-- 06:00 => 360
-- 05:00 => 300
-- 04:00 => 240
-- 03:00 => 180
-- 02:00 => 120
-- 01:00 => 60
-- 00:00 => 0
 
 Mental Model:
+Create function.
+Receive argument number.
+Convert number to positive number to indicate minutes past next next.
+Minutes in a day => 1440
+Work out hours / 60 (whole)
+Work out minutes % 60 (remainder)
+If String(number).length < 2 pasStart it with 0
+return `${hours}:${minutes}`
 
 
+D: Data Structure
+Variable memory allocation: I will utilize the memory allocation give to variables to assign and reassign values as required.
 
 
+A: Algorithm
+- start
+- set function
+- receive argument number
+- set const minutes in a day = 1440
+- reassign argument to be convert to positive number the next day
+  - ((-1437 % 1440) + 1440) % 1440 => 3
+  - 3 past midnight = 00:03
+- getHours:
+  - set hours${hours} => 3 / 60 => 0
+  - reassign hours hoursFormat = String(hours).padStart(2, '0'); => 00
+- getMinutes:
+  - set ${minutes} => 3 % 60 => 3
+  - reassign minutesFormat = String(minutes).padStart(2, '0'); => 03
+return `${hoursFormat}: ${minutesFormat}`
+- end
 
+
+C: Code With Intent
 
 */
