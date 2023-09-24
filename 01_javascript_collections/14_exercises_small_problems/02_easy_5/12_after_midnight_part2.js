@@ -1,3 +1,29 @@
+const HOURS_IN_A_DAY = 24;
+const MINUTES_IN_AN_HOUR = 60;
+const MINUTES_IN_A_DAY = HOURS_IN_A_DAY * MINUTES_IN_AN_HOUR;
+
+
+function afterMidnight (time) {
+  let [hours, minutes] = time.split(':').map((num => Number(num)));
+  let hoursAfterMidnight = (hours * MINUTES_IN_AN_HOUR) + minutes;
+
+  if (hoursAfterMidnight === MINUTES_IN_A_DAY) {
+    return hoursAfterMidnight - MINUTES_IN_A_DAY;
+  }
+
+  return hoursAfterMidnight;
+}
+
+function beforeMidnight (time) {
+  let hoursBeforeMidnight = MINUTES_IN_A_DAY - afterMidnight(time);
+
+  if (hoursBeforeMidnight === MINUTES_IN_A_DAY) {
+    return (hoursBeforeMidnight = 0);
+  }
+
+  return hoursBeforeMidnight;
+}
+
 
 console.log(afterMidnight("00:00") === 0);
 console.log(beforeMidnight("00:00") === 0);
@@ -13,5 +39,19 @@ As seen in the previous exercise, the time of day can be represented as the numb
 Write two functions that each take a time of day in 24 hour format, and return the number of minutes before and after midnight, respectively. Both functions should return a value in the range 0..1439.
 
 You may not use javascript's Date class methods.
+
+
+P: Understanding The Problem
+
+
+Input:
+Output:
+Rules:
+  Explicit:
+
+  Implicit:
+
+Questions:
+- n/a
 
 */
