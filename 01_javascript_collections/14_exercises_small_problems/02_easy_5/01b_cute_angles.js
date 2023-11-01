@@ -29,6 +29,8 @@ function getMinutes (angle, degree, MINUTES_IN_DEGREE) {
 function getDegree (angle) {
   return Math.floor(angle);
 }
+
+
 console.log(dms(30));           // 30°00'00"
 console.log(dms(76.73));        // 76°43'48"
 console.log(dms(254.6));        // 254°35'59"

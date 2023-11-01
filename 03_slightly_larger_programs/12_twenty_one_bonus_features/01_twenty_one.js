@@ -116,7 +116,7 @@ function dealersTurn(dealerCardsManager, userCardsManager) {
       return !isBust(dealerCardsManager);
     }
     if (getSumOfCards(dealerCardsManager) === MAGIC_21) {
-      return getSumOfCards(dealerCardsManager);
+      return MAGIC_21;
     }
   }
   console.log(`\nDealer Sticks.`);
@@ -171,7 +171,7 @@ function getCards(playerManager) {
 function printPlayerTotal(playerName, playerCardsManager) {
   console.log(
     `${playerName}'s Total:`,
-    getSumOfCards(playerCardsManager, `\n`)
+    getSumOfCards(playerCardsManager,`\n`)
   );
 }
 
@@ -188,21 +188,24 @@ function userInPlay(userCardsManager, dealerCardsManager) {
     if (hitOrStick === "h") {
       console.log(`\nYou chose to Hit:`);
       usersTurn(userCardsManager, dealerCardsManager);
-      
+
       if (isBust(userCardsManager)) {
-          console.log(`You Bust! with score ${getSumOfCards(userCardsManager)}. You went over 21!`);
-          break;
-        }
-      else if (isTwentyOne(userCardsManager)) {
+        console.log(`You Bust! with score ${getSumOfCards(userCardsManager)}. You went over 21!`);
+        break;
+      } else if (isTwentyOne(userCardsManager)) {
         dealersTurn(dealerCardsManager, userCardsManager);
         break;
       }
     } else {
-      console.log(`\nYou chose to Stick.`);
-      dealersTurn(dealerCardsManager, userCardsManager);
+      userSticks(userCardsManager, dealerCardsManager);
       break;
     }
   }
+}
+
+function userSticks(userCardsManager, dealerCardsManager) {
+  console.log(`\nYou chose to Stick.`);
+  dealersTurn(dealerCardsManager, userCardsManager);
 }
 
 function usersTurn(userCardsManager, dealerCardsManager) {
